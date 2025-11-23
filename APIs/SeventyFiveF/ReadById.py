@@ -16,9 +16,21 @@ class Read_By_Id(SeventyFiveF.Read):
         self.read_argument = read_argument
 
     def get_body(self):
+        """
+        Formats the body text for a ReadyById query. Whitespace at the end of any line will cause errors.
+        Example:
+
+        ver:"3.0"
+        id
+        @12345678-1234-1234-1234-123456789012
+        @12345678-1234-1234-1234-123456789012
+
+        :return: Properly formatted string
+        """
         logger.debug("Entering ReadById.get_body()")
-        # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
-        ids = "\n".join(self.read_argument)
-        body_text = f"ver:\"3.0\"\nid\n{ids}"
+        # NOTE:  ReadById does not use quotes around the argument, ReadyByFilter and ReadByFilterPaged do.
+        self.read_argument = ["@" + s for s in self.read_argument]      # Each ID must begin with a "@"
+        ids = "\n".join(self.read_argument)                             # Each ID must be on a separate line
+        body_text = f"ver:\"3.0\"\nid\n{ids}"                           # HULK SMASH! them together
         logger.debug(f"Body text:\n{body_text}")
         return body_text

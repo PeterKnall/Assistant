@@ -18,6 +18,16 @@ class Read_By_Filter_Paged(SeventyFiveF.Read):
         self.page_number = page_number
 
     def get_body(self):
+        """
+        Formats the body text for a ReadyByFilterPaged query.  Whitespace at the end of any line will cause errors.
+        Example:
+
+        ver:"3.0" size:25 page:3
+        filter
+        "system and equip and siteRef==@b8a1a5be-3080-40e6-9161-64f39944db9e"
+
+        :return: Properly formatted string
+        """
         logger.debug("Entering ReadByFilterPaged.get_body()")
         # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
         body_text = f"ver:\"3.0\" size:{self.page_size} page:{self.page_number}\nfilter\n\"{self.read_argument}\""
