@@ -16,6 +16,9 @@ class Read_By_Id(SeventyFiveF.Read):
         self.read_argument = read_argument
 
     def get_body(self):
+        logger.debug("Entering ReadById.get_body()")
         # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
         ids = "\n".join(self.read_argument)
-        return f"ver:\"3.0\"\nid\n{ids}"
+        body_text = f"ver:\"3.0\"\nid\n{ids}"
+        logger.debug(f"Body text:\n{body_text}")
+        return body_text

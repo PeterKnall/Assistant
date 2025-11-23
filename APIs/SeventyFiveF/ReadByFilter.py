@@ -19,5 +19,5 @@ class ReadByFilter(SeventyFiveF.Read):
         logger.debug("Entering ReadByFilter.get_body()")
         # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
         body_text =  f"ver:\"3.0\"\nfilter\n\"{self.read_argument}\""
-        logger.debug(f"Body text: {body_text}")
+        logger.debug(f"Body text:\n{body_text}")
         return body_text

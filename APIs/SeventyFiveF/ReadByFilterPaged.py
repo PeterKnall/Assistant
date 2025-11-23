@@ -18,5 +18,8 @@ class Read_By_Filter_Paged(SeventyFiveF.Read):
         self.page_number = page_number
 
     def get_body(self):
+        logger.debug("Entering ReadByFilterPaged.get_body()")
         # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
-        return f"ver:\"3.0\" size:{self.page_size} page:{self.page_number}\nfilter\n\"{self.read_argument}\""
+        body_text = f"ver:\"3.0\" size:{self.page_size} page:{self.page_number}\nfilter\n\"{self.read_argument}\""
+        logger.debug(f"Body text:\n{body_text}")
+        return body_text
