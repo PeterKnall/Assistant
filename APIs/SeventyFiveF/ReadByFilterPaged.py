@@ -1,9 +1,3 @@
-# Read
-# This API provides operations for reading and writing operational data to writable points as well as historizing
-# data for any point type.
-
-# Read by filter (paged): ver:"3.0" size:25 page:3 filter "system and equip and siteRef==@b8a1a5be-3080-40e6-9161-64f39944db9e"
-
 import APIs.SeventyFiveF.Read as SeventyFiveF
 import logging
 

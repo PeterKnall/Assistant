@@ -1,9 +1,3 @@
-# Read
-# This API provides operations for reading and writing operational data to writable points as well as historizing
-# data for any point type.
-
-# Read by id: ver:"3.0" id @6d78f1c0-d10a-4482-8058-db328441a669 @84010772-46ec-4937-9430-71083196f2c4
-
 import APIs.SeventyFiveF.Read as SeventyFiveF
 import logging
 
