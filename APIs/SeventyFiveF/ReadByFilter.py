@@ -16,7 +16,7 @@ class ReadByFilter(SeventyFiveF.Read):
 
         ver:"3.0"
         filter
-        "system and equip and siteRef==@b8a1a5be-3080-40e6-9161-64f39944db9e"
+        "system and equip and siteRef==@12345678-1234-1234-1234-123456789012"
 
         :return: Properly formatted string
         """

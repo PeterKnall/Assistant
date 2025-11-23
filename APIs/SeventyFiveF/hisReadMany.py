@@ -38,7 +38,21 @@ class hisReadMany:
 
     def read(self):
         """
-        Reads historical data from the 75F API.
+        Reads historical data from the 75F API.  Whitespace at the end of any line will cause errors.
+
+        Examples of Data format (Note: "id" and the subsequent list of ids must be on their own line with no extra whitespace).
+            date-time range: ver:"3.0" range:"2020-01-01T12:00:00-04:00 New_York,2020-01-03T00:00:00-04:00 New_York" id @12345678-1234-1234-1234-123456789012 @12345678-1234-1234-1234-123456789012
+            date range: ver:"3.0" range:"2020-01-01,2020-01-07" id @12345678-1234-1234-1234-123456789012 @12345678-1234-1234-1234-123456789012
+            date: ver:"3.0" range:"2020-01-01" id @12345678-1234-1234-1234-123456789012 @12345678-1234-1234-1234-123456789012
+            latest: ver:"3.0" range:"latest" id @12345678-1234-1234-1234-123456789012 @12345678-1234-1234-1234-123456789012
+            today: ver:"3.0" range:"today" id @12345678-1234-1234-1234-123456789012 @12345678-1234-1234-1234-123456789012
+
+            yesterday: (The above should look like this but where kept on the same line for spacing)
+            ver:"3.0" range:"yesterday"
+            id
+            @12345678-1234-1234-1234-123456789012
+            @12345678-1234-1234-1234-123456789012
+
         :return: JSON object with historical data.
         :exception: Returns an empty string
         """
