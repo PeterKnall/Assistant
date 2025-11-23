@@ -1,18 +1,17 @@
 import json
 import requests
-import APIs.SeventyFiveF.Auth as Auth
 
 class Read:
-    def __init__(self, username, password, subscription_key):
+    def __init__(self, username, password, subscription_key, authentication_key):
         self.username = username
         self.password = password
         self.subscription_key = subscription_key
-        self.authorization_string = Auth.get_authorization(username, password, subscription_key)
+        self.authentication_key = authentication_key
         self.url = "https://api.75f.io/haystack/read"
 
     def post(self):
         self.hdr = {
-            'Authorization': self.authorization_string,
+            'Authorization': self.authentication_key,
             'Accept': 'application/json',
             'Content-Type': 'text/zinc',
             'Cache-Control': 'no-cache',
