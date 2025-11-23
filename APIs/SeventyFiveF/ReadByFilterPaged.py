@@ -5,10 +5,14 @@
 # Read by filter (paged): ver:"3.0" size:25 page:3 filter "system and equip and siteRef==@b8a1a5be-3080-40e6-9161-64f39944db9e"
 
 import APIs.SeventyFiveF.Read as SeventyFiveF
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Read_By_Filter_Paged(SeventyFiveF.Read):
     def __init__(self, username, password, subscription_key, authentication_key, read_argument, page_size, page_number):
         super().__init__(username, password, subscription_key, authentication_key)
+        logging.debug("Entering ReadByFilterPaged.constructor()")
         self.read_argument = read_argument
         self.page_size = page_size
         self.page_number = page_number

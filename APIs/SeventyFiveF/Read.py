@@ -16,6 +16,7 @@ class Read:
         :param subscription_key: Subscription key from the API website
         :param authentication_key: Authentication key provided by Facilisight through the Auth class.
         """
+        logging.debug("Entering Read.constructor()")
         self.username = username
         self.password = password
         self.subscription_key = subscription_key

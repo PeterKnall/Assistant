@@ -5,10 +5,14 @@
 # Read by id: ver:"3.0" id @6d78f1c0-d10a-4482-8058-db328441a669 @84010772-46ec-4937-9430-71083196f2c4
 
 import APIs.SeventyFiveF.Read as SeventyFiveF
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Read_By_Id(SeventyFiveF.Read):
     def __init__(self, username, password, subscription_key, authentication_key, read_argument):
         super().__init__(username, password, subscription_key, authentication_key)
+        logging.debug("Entering ReadById.constructor()")
         self.read_argument = read_argument
 
     def get_body(self):
