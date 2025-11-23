@@ -1,20 +1,8 @@
-# Simple script to retrieve a historical values from 75F Haystack
-
-# A special thanks for the following supporters:
-#
-# Scott and Madhu from 75F.
-#
-# Permanently deleted user (5 Nov 2025):
-# Link-1 : https://support.75f.io/hc/en-us/articles/5460179115923-HisReadMany-API?input_string=auth+and+hisreadmany+api+help
-# Link-2 : https://support.75f.io/hc/en-us/articles/5460365803027-75F-API-s-Error-Returns?input_string=auth+and+hisreadmany+api+help
-#
-# This example was pulled from the 75F API website and written for Python 3.2.
-# This example was executed in Python 3.10.11
-# the "requests" library replaced the "urllibs" library, which I could not get to work.
-
 import requests
 import json
-import SeventyFiveF.Auth as Auth
+import logging
+
+logger = logging.getLogger(__name__)
 
 class hisReadMany:
     """
@@ -40,29 +28,37 @@ class hisReadMany:
         results (dict):
     """
 
-    def __init__(self, username, password, subscription_key, ids, date_range):
+    def __init__(self, username, password, subscription_key, authentication_key, ids, date_range):
         self.username = username
         self.password = password
         self.subscription_key = subscription_key
+        self.authentication_key = authentication_key
         self.ids = ids
         self.date_range = date_range
 
-    def post(self):
-        authorization_string = Auth.get_authorization(self.username, self.password, self.subscription_key)
+    def read(self):
+        """
+        Reads historical data from the 75F API.
+        :return: JSON object with historical data.
+        :exception: Returns an empty string
+        """
+        logger.debug("Entering hisReadMany.read()")
         url = "https://api.75f.io/haystack/hisReadMany"
         hdr ={
-            'Authorization': authorization_string,
+            'Authorization': self.authentication_key,
             'Accept': 'application/json',
             'Content-Type': 'text/zinc',
             'Cache-Control': 'no-cache',
             'Ocp-Apim-Subscription-Key': self.subscription_key,
         }
         # The list sent to the 75F API (ids) must consist of one id on each line without any leading or trailing spaces.
-        self.ids = ["@" + s for s in self.ids]
-        items = '\n'.join(self.ids)
-        data = f"ver:\"3.0\" range:\"{self.date_range}\"\nid\n{items}"
+        self.ids = ["@" + s for s in self.ids]                              # Each ID must begin with a "@"
+        items = '\n'.join(self.ids)                                         # Each ID must be on a separate line
+        data = f"ver:\"3.0\" range:\"{self.date_range}\"\nid\n{items}"      # Combine into body text
+        logger.debug(f"Retrieving data for:\n{data}")
         try:
             response = requests.post(url, data=data, headers=hdr, timeout=30)
             return json.loads(response.text)
         except Exception as e:
-            raise Exception(f"Exception during SeventyFiveF.hisReadMany.post(): {e}")
+            logger.error(f"Exception during SeventyFiveF.hisReadMany.post(): {e}")
+            return ""
