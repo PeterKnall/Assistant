@@ -24,6 +24,7 @@ class Auth():
         :param password: Facilisight Password
         :param subscription_key: Subscription key from the API website
         :return: (string) 855 character Authorization Key
+        :exception: Returns an empty string
         """
         logging.debug("Entered SeventyFiveF.Auth.get_authorization_key()")
         url = "https://api.75f.io/oauth/token"
