@@ -7,8 +7,8 @@
 import APIs.SeventyFiveF.Read as SeventyFiveF
 
 class Read_By_Filter_Paged(SeventyFiveF.Read):
-    def __init__(self, username, password, subscription_key, read_argument, page_size, page_number):
-        super().__init__(username, password, subscription_key)
+    def __init__(self, username, password, subscription_key, authentication_key, read_argument, page_size, page_number):
+        super().__init__(username, password, subscription_key, authentication_key)
         self.read_argument = read_argument
         self.page_size = page_size
         self.page_number = page_number

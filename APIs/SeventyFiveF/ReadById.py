@@ -7,8 +7,8 @@
 import APIs.SeventyFiveF.Read as SeventyFiveF
 
 class Read_By_Id(SeventyFiveF.Read):
-    def __init__(self, username, password, subscription_key, read_argument):
-        super().__init__(username, password, subscription_key)
+    def __init__(self, username, password, subscription_key, authentication_key, read_argument):
+        super().__init__(username, password, subscription_key, authentication_key)
         self.read_argument = read_argument
 
     def get_body(self):
