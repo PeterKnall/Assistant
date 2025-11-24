@@ -4,12 +4,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Read_By_Id(SeventyFiveF.Read):
-    def __init__(self, username, password, subscription_key, authentication_key, read_argument):
+    def __init__(self, username, password, subscription_key, authentication_key):
         super().__init__(username, password, subscription_key, authentication_key)
         logging.debug("Entering ReadById.constructor()")
-        self.read_argument = read_argument
 
-    def get_body(self):
+    def get_body(self, read_argument):
         """
         Formats the body text for a ReadyById query. Whitespace at the end of any line will cause errors.
         Example:
@@ -23,8 +22,8 @@ class Read_By_Id(SeventyFiveF.Read):
         """
         logger.debug("Entering ReadById.get_body()")
         # NOTE:  ReadById does not use quotes around the argument, ReadyByFilter and ReadByFilterPaged do.
-        self.read_argument = ["@" + s for s in self.read_argument]      # Each ID must begin with a "@"
-        ids = "\n".join(self.read_argument)                             # Each ID must be on a separate line
+        read_argument = ["@" + s for s in read_argument]                # Each ID must begin with a "@"
+        ids = "\n".join(read_argument)                                  # Each ID must be on a separate line
         body_text = f"ver:\"3.0\"\nid\n{ids}"                           # HULK SMASH! them together
         logger.debug(f"Body text:\n{body_text}")
         return body_text

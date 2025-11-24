@@ -23,7 +23,7 @@ class Read:
         self.authentication_key = authentication_key
         self.url = "https://api.75f.io/haystack/read"
 
-    def read(self):
+    def read(self, read_argument):
         """
         Sends information to 75F API using an HTTPS Post call and returns the result as JSON object.
         :return: JSON object with data from 75F API
@@ -36,7 +36,7 @@ class Read:
             'Cache-Control': 'no-cache',
             'Ocp-Apim-Subscription-Key': self.subscription_key,
         }
-        data = self.get_body() # Call to function in child class
+        data = self.get_body(read_argument) # Call to function in child class
         try:
             response = requests.post(self.url, data=data, headers=self.hdr, timeout=30)
             return json.loads(response.text)
@@ -44,7 +44,7 @@ class Read:
             logger.error(f"Exception during SeventyFiveF.Read(): {e}")
             return ""
 
-    def get_body(self):
+    def get_body(self, read_argument):
         """
         Something bad has happened, you should not be here.
         :return: Empty string

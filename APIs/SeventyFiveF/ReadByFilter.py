@@ -4,12 +4,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 class ReadByFilter(SeventyFiveF.Read):
-    def __init__(self, username, password, subscription_key, authentication_key, read_argument):
+    def __init__(self, username, password, subscription_key, authentication_key):
         super().__init__(username, password, subscription_key, authentication_key)
         logging.debug("Entering ReadByFilter.constructor()")
-        self.read_argument = read_argument
 
-    def get_body(self):
+    def get_body(self, read_argument):
         """
         Formats the body text for a ReadyByFilter query. Whitespace at the end of any line will cause errors.
         Example:
@@ -22,6 +21,6 @@ class ReadByFilter(SeventyFiveF.Read):
         """
         logger.debug("Entering ReadByFilter.get_body()")
         # NOTE:  The "id" filter does not use quotes around the argument, the "filter" filter does
-        body_text =  f"ver:\"3.0\"\nfilter\n\"{self.read_argument}\""
+        body_text =  f"ver:\"3.0\"\nfilter\n\"{read_argument}\""
         logger.debug(f"Body text:\n{body_text}")
         return body_text
