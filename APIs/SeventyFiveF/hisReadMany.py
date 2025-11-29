@@ -34,7 +34,7 @@ class hisReadMany:
         self.subscription_key = subscription_key
         self.authentication_key = authentication_key
 
-    def read(self, ids, date_rage):
+    def read(self, ids, date_range):
         """
         Reads historical data from the 75F API.  Whitespace at the end of any line will cause errors.
 
