@@ -7,7 +7,7 @@ import APIs.SeventyFiveF.ReadByFilter as Read
 import APIs.SeventyFiveF.Auth as Auth
 
 class TestReadByFilter(TestCase):
-    def test_get_body(self):
+    def test_RedByFilter(self):
         """
         This test checks that there are a single row is returned when looking for building equipment at the test site.
         This test depends on:
