@@ -136,4 +136,3 @@ class Test_hisReadMany_date(TestCase):
         df = pd.DataFrame(results['rows'][0])
 
         self.assertEqual(1440, df.shape[0])
-
