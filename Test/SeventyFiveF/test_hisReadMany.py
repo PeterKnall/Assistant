@@ -24,5 +24,29 @@ class Test_hisReadMany_date(TestCase):
         results = reader.read(ids, date_range)
         df = pd.DataFrame(results['rows'][0])
 
-        self.assertEqual(df.shape[0], 1440)     # There are
+        self.assertEqual(1440, df.shape[0])
+
+    def test_hisReadMany_DateRange(self):
+        """
+        This test checks that there are 588 trends returned for a range of dates.  This test depends on:
+        1) Privileges of username in Facilisite and the 75F API
+        2) The date chosen still has trends (may need to be updated if values for these historical value have been archived
+        3) The id being used (while change if the current profile is changed or deleted)
+        4) The date cannot include the current date as there haven't been 588 trends recorded yet
+
+        Notes: this feature returns historical values at 5 minute intervals instead of 1 minute intervals.
+        """
+        username = os.environ.get("75F API Username")
+        password = os.environ.get("75F API Password")
+        subscription_key = os.environ.get("75F API Subscription Key")
+        ids = ["52bdc021-71d3-4479-903e-0b0986a993ee"]
+        date_range = "2025-11-01,2025-11-02"
+
+        authentication_key = Auth.Auth().get_authorization_key(username, password, subscription_key)
+        reader = rm.hisReadMany(username, password, subscription_key, authentication_key)
+        results = reader.read(ids, date_range)
+        df = pd.DataFrame(results['rows'][0])
+        df.to_csv("data.csv", header=True, index=False)
+
+        self.assertEqual(588, df.shape[0])
 
