@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Read_By_Id(SeventyFiveF.Read):
+class ReadById(SeventyFiveF.Read):
     def __init__(self, username, password, subscription_key, authentication_key):
         super().__init__(username, password, subscription_key, authentication_key)
         logging.debug("Entering ReadById.constructor()")
