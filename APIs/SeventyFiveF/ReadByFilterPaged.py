@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Read_By_Filter_Paged(SeventyFiveF.Read):
+class ReadByFilterPaged(SeventyFiveF.Read):
     def __init__(self, username, password, subscription_key, authentication_key, page_size, page_number):
         super().__init__(username, password, subscription_key, authentication_key)
         logging.debug("Entering ReadByFilterPaged.constructor()")
