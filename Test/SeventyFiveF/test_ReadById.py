@@ -5,7 +5,7 @@ import APIs.SeventyFiveF.ReadById as Read
 import APIs.SeventyFiveF.Auth as Auth
 
 class TestRead_By_Id(TestCase):
-    def test_RedById(self):
+    def test_ReadById(self):
         """
         This test checks that there are a single row is returned when looking for building equipment at the test site.
         This test depends on:
