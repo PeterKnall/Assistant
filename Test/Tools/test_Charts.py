@@ -79,7 +79,7 @@ class TestCharts(TestCase):
             self.assertEqual(4, y_values[4], "y-axis[4] failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"Call to generate_trend_chart() failed: {e}")
+            self.fail(f"test_Charts_plot_single_axis_values_only() failed: {e}")
 
     def test_Charts_plot_single_axis_with_title(self):
         try:
@@ -92,7 +92,7 @@ class TestCharts(TestCase):
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"Call to generate_trend_chart() failed: {e}")
+            self.fail(f"test_Charts_plot_single_axis_with_title() failed: {e}")
 
     def test_Charts_plot_single_axis_with_x_axis_label(self):
         try:
@@ -106,7 +106,7 @@ class TestCharts(TestCase):
             self.assertEqual(self.xlabel, ax2.get_xlabel())
             plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"Call to generate_trend_chart() failed: {e}")
+            self.fail(f"test_Charts_plot_single_axis_with_x_axis_label() failed: {e}")
 
 
 
