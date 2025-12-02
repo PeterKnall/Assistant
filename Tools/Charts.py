@@ -20,10 +20,9 @@ class Charts:
         :param ax: Reference to axis to plot
         :param dict: Dictionary containing information to plot.  Key:Value pairs are:
             title:  string
-            data:   List of dictionary x, y name:value pairs
+            data:   List of dictionaries. Each dictionary entry contains name:value pairs for names "x" and "y".
         :return: updated axis
         """
-        ax.set_title(my_dict["title"])
         df = pd.DataFrame(my_dict["values"])
         ax.plot(df["x"], df["y"])
         return ax

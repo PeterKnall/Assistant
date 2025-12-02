@@ -27,7 +27,6 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["title"] = "test_Charts_plot_single_axis"
             values = [{"x" : datetime(2000, 1, 1, 0, 0, 0), "y": 0},
                          {"x" : datetime(2000, 1, 1, 1, 0, 0), "y": 1},
                          {"x" : datetime(2000, 1, 1, 2, 0, 0), "y": 2},
@@ -42,8 +41,6 @@ class TestCharts(TestCase):
             self.assertEqual(1, len(ax2.get_lines()), "There is not 1 line in the axis")
             self.assertEqual(5, len(ax2.get_lines()[0].get_xdata()), "There are not 5 data points on the x-axis")
             self.assertEqual(5, len(ax2.get_lines()[0].get_ydata()), "There are not 5 data points on the y-axis")
-
-            self.assertEqual(my_dict["title"], ax2.get_title(), "axis title failed")
 
             x_values = ax2.get_lines()[0].get_xdata()
             self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0], "x-axis[0] failed")
