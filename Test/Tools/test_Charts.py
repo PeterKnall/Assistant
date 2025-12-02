@@ -1,7 +1,5 @@
 from unittest import TestCase
 
-import pandas as pd
-
 import Tools.Charts as tools
 import numpy as np
 import matplotlib.pyplot as plt
