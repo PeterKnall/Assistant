@@ -97,9 +97,26 @@ class TestCharts(TestCase):
             my_dict["title"] = self.title
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            self.assertEqual(my_dict["title"], ax2.get_title())
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_single_axis_with_title() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_single_axis_with_None_title(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+            my_dict["title"] = None
+
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            self.assertEqual("title not defined", ax2.get_title())
+            plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_single_axis_with_None_title() failed: {e}")
         finally:
             plt.close(fig)
 

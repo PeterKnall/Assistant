@@ -27,7 +27,10 @@ class Charts:
         ax.plot(df["x"], df["y"])
 
         if "title" in my_dict:
-            ax.set_title(my_dict["title"])
+            if my_dict["title"]:
+                ax.set_title(my_dict["title"])
+            else:
+                ax.set_title("title not defined")
 
         if "xlabel" in my_dict:
             if my_dict["xlabel"]:
