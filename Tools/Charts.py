@@ -27,4 +27,6 @@ class Charts:
         ax.plot(df["x"], df["y"])
         if "title" in my_dict:
             ax.set_title(my_dict["title"])
+        if "xlabel" in my_dict:
+            ax.set_xlabel(my_dict["xlabel"])
         return ax
