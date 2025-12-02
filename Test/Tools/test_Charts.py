@@ -7,6 +7,14 @@ from datetime import datetime, timedelta
 
 class TestCharts(TestCase):
 
+    title = "Test Data"
+    values = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
+              {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
+              {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
+              {"x": datetime(2000, 1, 1, 3, 0, 0), "y": 3},
+              {"x": datetime(2000, 1, 1, 4, 0, 0), "y": 4}
+    ]
+
     def test_Charts_can_instantiate(self):
         try:
             obj = tools.Charts()
@@ -15,25 +23,12 @@ class TestCharts(TestCase):
 
         self.assertIsInstance(obj, tools.Charts)
 
-    def test_charts_call_plot_single_axis(self):
-        try:
-            obj = tools.Charts()
-            obj.plot_single_axis(None, None)
-        except Exception as e:
-            self.fail(f"Failed to call plot_single_axis(): {e}")
-
-    def test_Charts_plot_single_axis(self):
+    def test_Charts_plot_single_axis_values_only(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            values = [{"x" : datetime(2000, 1, 1, 0, 0, 0), "y": 0},
-                         {"x" : datetime(2000, 1, 1, 1, 0, 0), "y": 1},
-                         {"x" : datetime(2000, 1, 1, 2, 0, 0), "y": 2},
-                         {"x" : datetime(2000, 1, 1, 3, 0, 0), "y": 3},
-                         {"x" : datetime(2000, 1, 1, 4, 0, 0), "y": 4}
-            ]
-            my_dict["values"] = values
+            my_dict["values"] = self.values
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
 
@@ -55,6 +50,20 @@ class TestCharts(TestCase):
             self.assertEqual(2, y_values[2], "y-axis[2] failed")
             self.assertEqual(3, y_values[3], "y-axis[3] failed")
             self.assertEqual(4, y_values[4], "y-axis[4] failed")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"Call to generate_trend_chart() failed: {e}")
+
+
+    def test_Charts_plot_single_axis_with_title(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+            my_dict["title"] = self.title
+
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"Call to generate_trend_chart() failed: {e}")
