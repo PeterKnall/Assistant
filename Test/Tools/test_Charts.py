@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 import Tools.Charts as tools
 import numpy as np
 import matplotlib.pyplot as plt
@@ -91,18 +90,28 @@ class TestCharts(TestCase):
             self.assertEqual(5, len(ax2.get_lines()[0].get_ydata()), "There are not 5 data points on the y-axis")
 
             x_values = ax2.get_lines()[0].get_xdata()
-            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0], "x-axis[0] failed")
-            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1], "x-axis[1] failed")
-            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2], "x-axis[2] failed")
-            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3], "x-axis[3] failed")
-            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4], "x-axis[4] failed")
+            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0],
+                             "test_Charts_plot_axis_values_only: x-axis[0] failed")
+            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1],
+                             "test_Charts_plot_axis_values_only: x-axis[1] failed")
+            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2],
+                             "test_Charts_plot_axis_values_only: x-axis[2] failed")
+            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3],
+                             "test_Charts_plot_axis_values_only: x-axis[3] failed")
+            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4],
+                             "test_Charts_plot_axis_values_only: x-axis[4] failed")
 
             y_values = ax2.get_lines()[0].get_ydata()
-            self.assertEqual(0, y_values[0], "y-axis[0] failed")
-            self.assertEqual(1, y_values[1], "y-axis[1] failed")
-            self.assertEqual(2, y_values[2], "y-axis[2] failed")
-            self.assertEqual(3, y_values[3], "y-axis[3] failed")
-            self.assertEqual(4, y_values[4], "y-axis[4] failed")
+            self.assertEqual(0, y_values[0],
+                             "test_Charts_plot_axis_values_only: y-axis[0] failed")
+            self.assertEqual(1, y_values[1],
+                             "test_Charts_plot_axis_values_only: y-axis[1] failed")
+            self.assertEqual(2, y_values[2],
+                             "test_Charts_plot_axis_values_only: y-axis[2] failed")
+            self.assertEqual(3, y_values[3],
+                             "test_Charts_plot_axis_values_only: y-axis[3] failed")
+            self.assertEqual(4, y_values[4],
+                             "test_Charts_plot_axis_values_only: y-axis[4] failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_values_only() failed: {e}")
@@ -122,48 +131,69 @@ class TestCharts(TestCase):
             ax3 = tools.Charts().plot_axis(ax1, my_dict2)
 
             self.assertIsInstance(ax2, plt.Axes)
-            self.assertEqual(2, len(ax2.get_lines()), "There are not 2 lines in the axis")
+            self.assertEqual(2, len(ax2.get_lines()),
+                             "test_Charts_plot_two_axis_values: There are not 2 lines in the axis")
             self.assertEqual(5, len(ax2.get_lines()[0].get_xdata()),
-                             "There are not 5 data points on the x-axis")
+                             "test_Charts_plot_two_axis_values: There are not 5 data points on the x-axis in line 1")
             self.assertEqual(5, len(ax2.get_lines()[0].get_ydata()),
-                             "There are not 5 data points on the y-axis")
+                             "test_Charts_plot_two_axis_values: There are not 5 data points on the y-axis in line 1")
 
             x_values = ax2.get_lines()[0].get_xdata()
-            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0], "x-axis[0] failed")
-            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1], "x-axis[1] failed")
-            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2], "x-axis[2] failed")
-            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3], "x-axis[3] failed")
-            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4], "x-axis[4] failed")
+            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0],
+                             "test_Charts_plot_two_axis_values: x-axis[0] failed in line 1")
+            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1],
+                             "test_Charts_plot_two_axis_values: x-axis[1] failed in line 1")
+            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2],
+                             "test_Charts_plot_two_axis_values: x-axis[2] failed in line 1")
+            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3],
+                             "test_Charts_plot_two_axis_values: x-axis[3] failed in line 1")
+            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4],
+                             "test_Charts_plot_two_axis_values: x-axis[4] failed in line 1")
 
             y_values = ax2.get_lines()[0].get_ydata()
-            self.assertEqual(0, y_values[0], "y-axis[0] failed")
-            self.assertEqual(1, y_values[1], "y-axis[1] failed")
-            self.assertEqual(2, y_values[2], "y-axis[2] failed")
-            self.assertEqual(3, y_values[3], "y-axis[3] failed")
-            self.assertEqual(4, y_values[4], "y-axis[4] failed")
+            self.assertEqual(0, y_values[0],
+                             "test_Charts_plot_two_axis_values: y-axis[0] failed in line 1")
+            self.assertEqual(1, y_values[1],
+                             "test_Charts_plot_two_axis_values: y-axis[1] failed in line 1")
+            self.assertEqual(2, y_values[2],
+                             "test_Charts_plot_two_axis_values: y-axis[2] failed in line 1")
+            self.assertEqual(3, y_values[3],
+                             "test_Charts_plot_two_axis_values: y-axis[3] failed in line 1")
+            self.assertEqual(4, y_values[4],
+                             "test_Charts_plot_two_axis_values: y-axis[4] failed in line 1")
 
-            self.assertEqual(5, len(ax2.get_lines()[0].get_xdata()),
-                             "There are not 5 data points on the x-axis")
-            self.assertEqual(5, len(ax2.get_lines()[0].get_ydata()),
-                             "There are not 5 data points on the y-axis")
+            self.assertEqual(5, len(ax2.get_lines()[1].get_xdata()),
+                             "test_Charts_plot_two_axis_values: There are not 5 data points on the x-axis in line 2")
+            self.assertEqual(5, len(ax2.get_lines()[1].get_ydata()),
+                             "test_Charts_plot_two_axis_values: There are not 5 data points on the y-axis in line 2")
 
             x_values = ax2.get_lines()[1].get_xdata()
-            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0], "x-axis[0] failed")
-            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1], "x-axis[1] failed")
-            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2], "x-axis[2] failed")
-            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3], "x-axis[3] failed")
-            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4], "x-axis[4] failed")
+            self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0],
+                             "test_Charts_plot_two_axis_values: x-axis[0] failed in line 2")
+            self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1],
+                             "test_Charts_plot_two_axis_values: x-axis[1] failed in line 2")
+            self.assertEqual(np.datetime64("2000-01-01T02:00:00.000000000"), x_values[2],
+                             "test_Charts_plot_two_axis_values: x-axis[2] failed in line 2")
+            self.assertEqual(np.datetime64("2000-01-01T03:00:00.000000000"), x_values[3],
+                             "test_Charts_plot_two_axis_values: x-axis[3] failed in line 2")
+            self.assertEqual(np.datetime64("2000-01-01T04:00:00.000000000"), x_values[4],
+                             "test_Charts_plot_two_axis_values: x-axis[4] failed in line 2")
 
             y_values = ax2.get_lines()[1].get_ydata()
-            self.assertEqual(4, y_values[0], "y-axis[4] failed")
-            self.assertEqual(3, y_values[1], "y-axis[3] failed")
-            self.assertEqual(2, y_values[2], "y-axis[2] failed")
-            self.assertEqual(1, y_values[3], "y-axis[1] failed")
-            self.assertEqual(0, y_values[4], "y-axis[0] failed")
+            self.assertEqual(4, y_values[0],
+                             "test_Charts_plot_two_axis_values: y-axis[4] failed in line 2")
+            self.assertEqual(3, y_values[1],
+                             "test_Charts_plot_two_axis_values: y-axis[3] failed in line 2")
+            self.assertEqual(2, y_values[2],
+                             "test_Charts_plot_two_axis_values: y-axis[2] failed in line 2")
+            self.assertEqual(1, y_values[3],
+                             "test_Charts_plot_two_axis_values: y-axis[1] failed in line 2")
+            self.assertEqual(0, y_values[4],
+                             "test_Charts_plot_two_axis_values: y-axis[0] failed in line 2")
 
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_axis_values_only() failed: {e}")
+            self.fail(f"test_Charts_plot_two_axis_values() failed: {e}")
         finally:
             plt.close(fig)
 
@@ -176,7 +206,8 @@ class TestCharts(TestCase):
             my_dict["title"] = self.title
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual(my_dict["title"], ax2.get_title())
+            self.assertEqual(my_dict["title"], ax2.get_title(),
+                             "test_Charts_plot_axis_with_title: test_Charts_plot_axis_with_title: Title did not match")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_title() failed: {e}")
@@ -192,7 +223,8 @@ class TestCharts(TestCase):
             my_dict["title"] = None
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual("title not defined", ax2.get_title())
+            self.assertEqual("title not defined", ax2.get_title(),
+                             "test_Charts_plot_axis_with_None_title: None title assert failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_None_title() failed: {e}")
@@ -208,7 +240,8 @@ class TestCharts(TestCase):
             my_dict["x_label"] = self.x_label
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual(self.x_label, ax2.get_xlabel())
+            self.assertEqual(self.x_label, ax2.get_xlabel(),
+                             "test_Charts_plot_axis_with_x_axis_label: x-axis labels did not match")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_x_axis_label() failed: {e}")
@@ -224,7 +257,8 @@ class TestCharts(TestCase):
             my_dict["x_label"] = None
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual("x-axis label not defined", ax2.get_xlabel())
+            self.assertEqual("x-axis label not defined", ax2.get_xlabel(),
+                             "test_Charts_plot_axis_with_None_x_axis_label: None x-axis label assert failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_None_x_axis_label() failed: {e}")
@@ -240,7 +274,8 @@ class TestCharts(TestCase):
             my_dict["y_label"] = self.y_label
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual(self.y_label, ax2.get_ylabel())
+            self.assertEqual(self.y_label, ax2.get_ylabel(),
+                             "test_Charts_plot_axis_with_y_axis_label: y-axis labels did not match")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_y_axis_label() failed: {e}")
@@ -256,7 +291,8 @@ class TestCharts(TestCase):
             my_dict["y_label"] = None
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual("y-axis label not defined", ax2.get_ylabel())
+            self.assertEqual("y-axis label not defined", ax2.get_ylabel(),
+                             "test_Charts_plot_axis_with_None_y_axis_label: y-axis label assert failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_axis_with_None_x_axis_label() failed: {e}")
@@ -272,7 +308,8 @@ class TestCharts(TestCase):
             my_dict["data_series_1_label"] = self.data_series_1_label
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual(my_dict["data_series_1_label"], ax2.get_lines()[0].get_label())
+            self.assertEqual(my_dict["data_series_1_label"], ax2.get_lines()[0].get_label(),
+                             "test_Charts_plot_axis_with_data_series_1_label: series 1 labels did not match")
             # plt.legend()
             # plt.show()  # This will actually show the plot
         except Exception as e:
@@ -289,7 +326,8 @@ class TestCharts(TestCase):
             my_dict["data_series_1_label"] = None
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual("label not defined", ax2.get_lines()[0].get_label())
+            self.assertEqual("label not defined", ax2.get_lines()[0].get_label(),
+                             "test_Charts_plot_axis_with_None_data_series_1_label: series 1 label assert fail")
             # plt.legend()
             # plt.show()  # This will actually show the plot
         except Exception as e:
