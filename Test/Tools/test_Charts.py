@@ -23,6 +23,32 @@ class TestCharts(TestCase):
 
         self.assertIsInstance(obj, tools.Charts)
 
+    def test_charts_call_plot_single_axis_with_axis_as_None(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+
+            tools.Charts().plot_single_axis(None, my_dict)
+        except Exception as e:
+            pass
+        else:
+            self.assertFalse(f"Expected exception when calling with axis set to None.")
+
+    def test_charts_call_plot_single_axis_with_my_dict_as_None(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+
+            tools.Charts().plot_single_axis(ax1, None)
+        except Exception as e:
+            pass
+        else:
+            self.assertFalse(f"Expected exception when calling with dictionary values set to None.")
+
     def test_Charts_plot_single_axis_values_only(self):
         try:
             fig = plt.figure(figsize=(15, 9))
