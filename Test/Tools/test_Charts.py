@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 class TestCharts(TestCase):
 
     title = "Test Data"
+    xlabel = "X-axis"
     values = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
               {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
               {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
@@ -80,7 +81,6 @@ class TestCharts(TestCase):
         except Exception as e:
             self.fail(f"Call to generate_trend_chart() failed: {e}")
 
-
     def test_Charts_plot_single_axis_with_title(self):
         try:
             fig = plt.figure(figsize=(15, 9))
@@ -91,6 +91,20 @@ class TestCharts(TestCase):
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"Call to generate_trend_chart() failed: {e}")
+
+    def test_Charts_plot_single_axis_with_x_axis_label(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+            my_dict["xlabel"] = self.xlabel
+
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            self.assertEqual(self.xlabel, ax2.get_xlabel())
+            plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"Call to generate_trend_chart() failed: {e}")
 
