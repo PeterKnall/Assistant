@@ -9,6 +9,7 @@ class TestCharts(TestCase):
 
     title = "Test Data"
     xlabel = "X-axis"
+    ylabel = "Y-axis"
     values = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
               {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
               {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
@@ -134,5 +135,18 @@ class TestCharts(TestCase):
         finally:
             plt.close(fig)
 
+    def test_Charts_plot_single_axis_with_y_axis_label(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+            my_dict["ylabel"] = self.ylabel
 
-
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            self.assertEqual(self.ylabel, ax2.get_ylabel())
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_single_axis_with_y_axis_label() failed: {e}")
+        finally:
+            plt.close(fig)
