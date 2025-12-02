@@ -1,4 +1,7 @@
 from unittest import TestCase
+
+import pandas as pd
+
 import Tools.Charts as tools
 import numpy as np
 import matplotlib.pyplot as plt
@@ -25,7 +28,7 @@ class TestCharts(TestCase):
 
         self.assertIsInstance(obj, tools.Charts)
 
-    def test_charts_call_plot_single_axis_with_axis_as_None(self):
+    def test_charts_call_plot_single_axis_with_axis_as_None_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -40,7 +43,7 @@ class TestCharts(TestCase):
         finally:
             plt.close(fig)
 
-    def test_charts_call_plot_single_axis_with_my_dict_as_None(self):
+    def test_charts_call_plot_single_axis_with_my_dict_as_None_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -52,6 +55,20 @@ class TestCharts(TestCase):
             pass
         else:
             self.assertFalse(f"Expected exception when calling with dictionary values set to None.")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_single_axis_with_empty_dataframe_returns_exception(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+        except Exception as e:
+            pass
+        else:
+            self.fail(f"test_Charts_plot_single_axis_with_empty_dataframe() failed: {e}")
         finally:
             plt.close(fig)
 
