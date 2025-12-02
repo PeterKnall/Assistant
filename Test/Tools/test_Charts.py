@@ -36,6 +36,8 @@ class TestCharts(TestCase):
             pass
         else:
             self.assertFalse(f"Expected exception when calling with axis set to None.")
+        finally:
+            plt.close(fig)
 
     def test_charts_call_plot_single_axis_with_my_dict_as_None(self):
         try:
@@ -49,6 +51,8 @@ class TestCharts(TestCase):
             pass
         else:
             self.assertFalse(f"Expected exception when calling with dictionary values set to None.")
+        finally:
+            plt.close(fig)
 
     def test_Charts_plot_single_axis_values_only(self):
         try:
@@ -80,6 +84,8 @@ class TestCharts(TestCase):
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_single_axis_values_only() failed: {e}")
+        finally:
+            plt.close(fig)
 
     def test_Charts_plot_single_axis_with_title(self):
         try:
@@ -93,6 +99,8 @@ class TestCharts(TestCase):
             # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_single_axis_with_title() failed: {e}")
+        finally:
+            plt.close(fig)
 
     def test_Charts_plot_single_axis_with_x_axis_label(self):
         try:
@@ -104,9 +112,11 @@ class TestCharts(TestCase):
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual(self.xlabel, ax2.get_xlabel())
-            plt.show()  # This will actually show the plot
+            # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_single_axis_with_x_axis_label() failed: {e}")
+        finally:
+            plt.close(fig)
 
     def test_Charts_plot_single_axis_with_None_x_axis_label(self):
         try:
@@ -118,9 +128,11 @@ class TestCharts(TestCase):
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual("x-axis label not defined", ax2.get_xlabel())
-            plt.show()  # This will actually show the plot
+            # plt.show()  # This will actually show the plot
         except Exception as e:
             self.fail(f"test_Charts_plot_single_axis_with_None_x_axis_label() failed: {e}")
+        finally:
+            plt.close(fig)
 
 
 
