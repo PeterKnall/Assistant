@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 class Charts:
@@ -18,10 +19,11 @@ class Charts:
 
         :param ax: Reference to axis to plot
         :param dict: Dictionary containing information to plot.  Key:Value pairs are:
-            name:   string
-            title:
-            kind:   string that is in ["line", "bar", "scatter", "line"]
+            title:  string
             data:   List of dictionary x, y name:value pairs
         :return: updated axis
         """
-        pass
+        ax.set_title(my_dict["title"])
+        df = pd.DataFrame(my_dict["values"])
+        ax.plot(df["x"], df["y"])
+        return ax

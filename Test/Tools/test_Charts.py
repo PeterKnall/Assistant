@@ -43,6 +43,8 @@ class TestCharts(TestCase):
             self.assertEqual(5, len(ax2.get_lines()[0].get_xdata()), "There are not 5 data points on the x-axis")
             self.assertEqual(5, len(ax2.get_lines()[0].get_ydata()), "There are not 5 data points on the y-axis")
 
+            self.assertEqual(my_dict["title"], ax2.get_title(), "axis title failed")
+
             x_values = ax2.get_lines()[0].get_xdata()
             self.assertEqual(np.datetime64("2000-01-01T00:00:00.000000000"), x_values[0], "x-axis[0] failed")
             self.assertEqual(np.datetime64("2000-01-01T01:00:00.000000000"), x_values[1], "x-axis[1] failed")
