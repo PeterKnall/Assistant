@@ -25,6 +25,7 @@ class Charts:
         """
         df = pd.DataFrame(my_dict["values"])
         ax.plot(df["x"], df["y"])
+        label = ""
 
         if "title" in my_dict:
             if my_dict["title"]:
@@ -43,5 +44,11 @@ class Charts:
                 ax.set_ylabel(my_dict["ylabel"])
             else:
                 ax.set_ylabel("y-axis label not defined")
+
+        if "data_series_1_label" in my_dict:
+            if my_dict["data_series_1_label"]:
+                ax.get_lines()[0].set_label(my_dict["data_series_1_label"])
+            else:
+                ax.get_lines()[0].set_label("label not defined")
 
         return ax
