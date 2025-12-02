@@ -150,3 +150,19 @@ class TestCharts(TestCase):
             self.fail(f"test_Charts_plot_single_axis_with_y_axis_label() failed: {e}")
         finally:
             plt.close(fig)
+
+    def test_Charts_plot_single_axis_with_None_y_axis_label(self):
+        try:
+            fig = plt.figure(figsize=(10, 5))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict = dict()
+            my_dict["values"] = self.values
+            my_dict["ylabel"] = None
+
+            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            self.assertEqual("y-axis label not defined", ax2.get_xlabel())
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_single_axis_with_None_x_axis_label() failed: {e}")
+        finally:
+            plt.close(fig)
