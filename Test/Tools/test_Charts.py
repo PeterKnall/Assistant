@@ -11,6 +11,7 @@ class TestCharts(TestCase):
     x_label = "X-axis"
     y_label = "Y-axis"
     data_series_1_label = "Data Series 1"
+    data_series_2_label = "Data Series 2"
     values_1 = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
                 {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
                 {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
@@ -305,11 +306,35 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values_1
-            my_dict["data_series_1_label"] = self.data_series_1_label
+            my_dict["data_series_label"] = self.data_series_1_label
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
-            self.assertEqual(my_dict["data_series_1_label"], ax2.get_lines()[0].get_label(),
+            self.assertEqual(my_dict["data_series_label"], ax2.get_lines()[0].get_label(),
                              "test_Charts_plot_axis_with_data_series_1_label: series 1 labels did not match")
+            # plt.legend()
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_data_series_1_label() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_data_series_2_label(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["data_series_label"] = self.data_series_1_label
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["data_series_label"] = self.data_series_2_label
+
+            ax2 = tools.Charts().plot_axis(ax1, my_dict1)
+            ax3 = tools.Charts().plot_axis(ax1, my_dict2)
+            self.assertEqual(my_dict1["data_series_label"], ax2.get_lines()[0].get_label(),
+                             "test_Charts_plot_axis_with_data_series_2_label: series 1 labels did not match")
+            self.assertEqual(my_dict2["data_series_label"], ax2.get_lines()[1].get_label(),
+                             "test_Charts_plot_axis_with_data_series_2_label: series 2 labels did not match")
             # plt.legend()
             # plt.show()  # This will actually show the plot
         except Exception as e:
@@ -323,7 +348,7 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values_1
-            my_dict["data_series_1_label"] = None
+            my_dict["data_series_label"] = None
 
             ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual("label not defined", ax2.get_lines()[0].get_label(),

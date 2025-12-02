@@ -45,10 +45,11 @@ class Charts:
             else:
                 ax.set_ylabel("y-axis label not defined")
 
-        if "data_series_1_label" in my_dict:
-            if my_dict["data_series_1_label"]:
-                ax.get_lines()[0].set_label(my_dict["data_series_1_label"])
+        if "data_series_label" in my_dict:
+            index = len(ax.get_lines()) - 1
+            if my_dict["data_series_label"]:
+                ax.get_lines()[index].set_label(my_dict["data_series_label"])
             else:
-                ax.get_lines()[0].set_label("label not defined")
+                ax.get_lines()[index].set_label("label not defined")
 
         return ax
