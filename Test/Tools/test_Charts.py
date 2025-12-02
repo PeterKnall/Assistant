@@ -360,3 +360,192 @@ class TestCharts(TestCase):
         finally:
             pass
             plt.close(fig)
+
+    def test_Charts_plot_axis_with_text_color(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["color"] = "red"
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["color"] = "green"
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual("red", ax.get_lines()[0].get_color(),
+                             "test_Charts_plot_axis_with_text_color: line 1 color did not match")
+            self.assertEqual("green", ax.get_lines()[1].get_color(),
+                             "test_Charts_plot_axis_with_text_color: line 2 color did not match")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_text_color() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_hex_color(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["color"] = "#FF0000"
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["color"] = "#00FF00"
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual("#FF0000", ax.get_lines()[0].get_color(),
+                             "test_Charts_plot_axis_with_hex_color: line 1 color did not match")
+            self.assertEqual("#00FF00", ax.get_lines()[1].get_color(),
+                             "test_Charts_plot_axis_with_hex_color: line 2 color did not match")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_hex_color() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_rgb_color(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["color"] = (1, 0, 0)
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["color"] = (0, 1, 0)
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual((1, 0, 0), ax.get_lines()[0].get_color(),
+                             "test_Charts_plot_axis_with_rgb_color: line 1 color did not match")
+            self.assertEqual((0, 1, 0), ax.get_lines()[1].get_color(),
+                             "test_Charts_plot_axis_with_rgb_color: line 2 color did not match")
+            plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_rgb_color() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_None_color(self):
+        try:
+            colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]      # Uses the matplotlib color cycle
+
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["color"] = None
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["color"] = None
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual(colors[0], ax.get_lines()[0].get_color(),
+                             "test_Charts_plot_axis_with_None_color: line 1 color did not match color cycle")
+            self.assertEqual(colors[1], ax.get_lines()[1].get_color(),
+                             "test_Charts_plot_axis_with_None_color: line 2 color did not match color cycle")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_None_color() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_invalid_color(self):
+        try:
+            colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]      # Uses the matplotlib color cycle
+
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["color"] = "Not a valid color"
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["color"] = "Also not a valid color"
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual(colors[0], ax.get_lines()[0].get_color(),
+                             "test_Charts_plot_axis_with_invalid_color: line 1 color did not match color cycle")
+            self.assertEqual(colors[1], ax.get_lines()[1].get_color(),
+                             "test_Charts_plot_axis_with_invalid_color: line 2 color did not match color cycle")
+            plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_invalid_color() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_marker(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["marker"] = "o"
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["marker"] = "x"
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual("o", ax.get_lines()[0].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 1 did not match")
+            self.assertEqual("x", ax.get_lines()[1].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 2 did not match")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_marker() failed: {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_plot_axis_with_None_marker(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["marker"] = None
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["marker"] = None
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual("None", ax.get_lines()[0].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 1 is not None")
+            self.assertEqual("None", ax.get_lines()[1].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 2 is not None")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_marker() failed: {e}")
+        finally:
+            plt.close(fig)
+
+
+    def test_Charts_plot_axis_with_invalid_marker(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            my_dict1 = dict()
+            my_dict1["values"] = self.values_1
+            my_dict1["marker"] = "/"
+            my_dict2 = dict()
+            my_dict2["values"] = self.values_2
+            my_dict2["marker"] = "M"
+            tools.Charts().plot_axis(ax, my_dict1)
+            tools.Charts().plot_axis(ax, my_dict2)
+
+            self.assertEqual("None", ax.get_lines()[0].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 1 is not None")
+            self.assertEqual("None", ax.get_lines()[1].get_marker(),
+                             "test_Charts_plot_axis_with_marker: marker 2 is not None")
+            # plt.show()  # This will actually show the plot
+        except Exception as e:
+            self.fail(f"test_Charts_plot_axis_with_marker() failed: {e}")
+        finally:
+            plt.close(fig)

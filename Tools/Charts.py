@@ -20,12 +20,19 @@ class Charts:
         :param ax: Reference to axis to plot
         :param dict: Dictionary containing information to plot.  Key:Value pairs are:
             title:  string title for this set of data
-            data:   List of dictionaries. Each dictionary entry contains name:value pairs for names "x" and "y".
+            x_label: label for the x-axis
+            y_label: label for the y-axis
+            data_series_label: label for the data series in the legend
+            color: string name, string hexadecimal value, or RGB tuple for line color
+                        if an invalid color is selected, the matplotlib pyplot color cycle is used
+            marker: string assignment for a marker for the data points in ['o', '.', 's', '^', 'v', 'x', '+', '*', 'D']
+                        if an invalid marker is used, none will be shown
+            data:   List of dictionaries. Each dictionary entry contains one data sample for
+                        name:value pairs "x" and "y".
         :return: updated axis
         """
         df = pd.DataFrame(my_dict["values"])
         ax.plot(df["x"], df["y"])
-        label = ""
 
         if "title" in my_dict:
             if my_dict["title"]:
@@ -51,5 +58,25 @@ class Charts:
                 ax.get_lines()[index].set_label(my_dict["data_series_label"])
             else:
                 ax.get_lines()[index].set_label("label not defined")
+
+        if "color" in my_dict:
+            index = len(ax.get_lines()) - 1
+            if my_dict["color"]:
+                try:
+                    ax.get_lines()[index].set_color(my_dict["color"])
+                except Exception as e:
+                    pass    # defer to Matplotlib pyplot's color cycle
+            else:
+                pass   # if None is passed, do nothing
+
+        if "marker" in my_dict:
+            index = len(ax.get_lines()) - 1
+            if my_dict["marker"]:
+                try:
+                    ax.get_lines()[index].set_marker(my_dict["marker"])
+                except Exception as e:
+                    pass    # do nothing
+            else:
+                pass        # do nothing
 
         return ax
