@@ -14,12 +14,12 @@ class TestCharts(TestCase):
     x_label = "X-axis"
     y_label = "Y-axis"
     data_series_1_label = "Data Series 1"
-    values = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
-              {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
-              {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
-              {"x": datetime(2000, 1, 1, 3, 0, 0), "y": 3},
-              {"x": datetime(2000, 1, 1, 4, 0, 0), "y": 4}
-    ]
+    values_1 = [{"x": datetime(2000, 1, 1, 0, 0, 0), "y": 0},
+                {"x": datetime(2000, 1, 1, 1, 0, 0), "y": 1},
+                {"x": datetime(2000, 1, 1, 2, 0, 0), "y": 2},
+                {"x": datetime(2000, 1, 1, 3, 0, 0), "y": 3},
+                {"x": datetime(2000, 1, 1, 4, 0, 0), "y": 4}
+                ]
 
     def test_Charts_can_instantiate(self):
         try:
@@ -34,7 +34,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
 
             tools.Charts().plot_single_axis(None, my_dict)
         except Exception as e:
@@ -49,7 +49,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
 
             tools.Charts().plot_single_axis(ax1, None)
         except Exception as e:
@@ -78,7 +78,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
 
@@ -111,7 +111,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["title"] = self.title
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -127,7 +127,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["title"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -143,7 +143,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["x_label"] = self.x_label
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -159,7 +159,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["x_label"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -175,7 +175,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["y_label"] = self.y_label
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -191,7 +191,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["y_label"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -207,7 +207,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["data_series_1_label"] = self.data_series_1_label
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
@@ -224,7 +224,7 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
-            my_dict["values"] = self.values
+            my_dict["values"] = self.values_1
             my_dict["data_series_1_label"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
