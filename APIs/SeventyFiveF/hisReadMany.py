@@ -28,15 +28,13 @@ class hisReadMany:
         results (dict):
     """
 
-    def __init__(self, username, password, subscription_key, authentication_key, ids, date_range):
+    def __init__(self, username, password, subscription_key, authentication_key):
         self.username = username
         self.password = password
         self.subscription_key = subscription_key
         self.authentication_key = authentication_key
-        self.ids = ids
-        self.date_range = date_range
 
-    def read(self):
+    def read(self, ids, date_range):
         """
         Reads historical data from the 75F API.  Whitespace at the end of any line will cause errors.
 
@@ -66,9 +64,9 @@ class hisReadMany:
             'Ocp-Apim-Subscription-Key': self.subscription_key,
         }
         # The list sent to the 75F API (ids) must consist of one id on each line without any leading or trailing spaces.
-        self.ids = ["@" + s for s in self.ids]                              # Each ID must begin with a "@"
-        items = '\n'.join(self.ids)                                         # Each ID must be on a separate line
-        data = f"ver:\"3.0\" range:\"{self.date_range}\"\nid\n{items}"      # Combine into body text
+        ids = ["@" + s for s in ids]                                        # Each ID must begin with a "@"
+        items = '\n'.join(ids)                                              # Each ID must be on a separate line
+        data = f"ver:\"3.0\" range:\"{date_range}\"\nid\n{items}"           # Combine into body text
         logger.debug(f"Retrieving data for:\n{data}")
         try:
             response = requests.post(url, data=data, headers=hdr, timeout=30)
