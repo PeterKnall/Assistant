@@ -34,14 +34,14 @@ class TestCharts(TestCase):
 
         self.assertIsInstance(obj, tools.Charts)
 
-    def test_charts_call_plot_single_axis_with_axis_as_None_returns_exception(self):
+    def test_charts_call_plot_axis_with_axis_as_None_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values_1
 
-            tools.Charts().plot_single_axis(None, my_dict)
+            tools.Charts().plot_axis(None, my_dict)
         except Exception as e:
             pass
         else:
@@ -49,14 +49,14 @@ class TestCharts(TestCase):
         finally:
             plt.close(fig)
 
-    def test_charts_call_plot_single_axis_with_my_dict_as_None_returns_exception(self):
+    def test_charts_call_plot_axis_with_my_dict_as_None_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values_1
 
-            tools.Charts().plot_single_axis(ax1, None)
+            tools.Charts().plot_axis(ax1, None)
         except Exception as e:
             pass
         else:
@@ -64,28 +64,28 @@ class TestCharts(TestCase):
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_empty_dataframe_returns_exception(self):
+    def test_Charts_plot_axis_with_empty_dataframe_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
         except Exception as e:
             pass
         else:
-            self.fail(f"test_Charts_plot_single_axis_with_empty_dataframe() failed")
+            self.fail(f"test_Charts_plot_axis_with_empty_dataframe() failed")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_values_only(self):
+    def test_Charts_plot_axis_values_only(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values_1
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
 
             self.assertIsInstance(ax2, plt.Axes)
             self.assertEqual(1, len(ax2.get_lines()), "There is not 1 line in the axis")
@@ -107,7 +107,7 @@ class TestCharts(TestCase):
             self.assertEqual(4, y_values[4], "y-axis[4] failed")
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_values_only() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_values_only() failed: {e}")
         finally:
             plt.close(fig)
 
@@ -120,8 +120,8 @@ class TestCharts(TestCase):
             my_dict2 = dict()
             my_dict2["values"] = self.values_2
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict1)
-            ax3 = tools.Charts().plot_single_axis(ax1, my_dict2)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict1)
+            ax3 = tools.Charts().plot_axis(ax1, my_dict2)
 
             self.assertIsInstance(ax2, plt.Axes)
             self.assertEqual(2, len(ax2.get_lines()), "There are not 2 lines in the axis")
@@ -163,13 +163,13 @@ class TestCharts(TestCase):
             self.assertEqual(1, y_values[3], "y-axis[1] failed")
             self.assertEqual(0, y_values[4], "y-axis[0] failed")
 
-            plt.show()  # This will actually show the plot
+            # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_values_only() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_values_only() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_title(self):
+    def test_Charts_plot_axis_with_title(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -177,15 +177,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["title"] = self.title
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual(my_dict["title"], ax2.get_title())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_title() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_title() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_None_title(self):
+    def test_Charts_plot_axis_with_None_title(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -193,15 +193,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["title"] = None
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual("title not defined", ax2.get_title())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_None_title() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_None_title() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_x_axis_label(self):
+    def test_Charts_plot_axis_with_x_axis_label(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -209,15 +209,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["x_label"] = self.x_label
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual(self.x_label, ax2.get_xlabel())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_x_axis_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_x_axis_label() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_None_x_axis_label(self):
+    def test_Charts_plot_axis_with_None_x_axis_label(self):
         try:
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -225,15 +225,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["x_label"] = None
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual("x-axis label not defined", ax2.get_xlabel())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_None_x_axis_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_None_x_axis_label() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_y_axis_label(self):
+    def test_Charts_plot_axis_with_y_axis_label(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -241,15 +241,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["y_label"] = self.y_label
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual(self.y_label, ax2.get_ylabel())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_y_axis_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_y_axis_label() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_None_y_axis_label(self):
+    def test_Charts_plot_axis_with_None_y_axis_label(self):
         try:
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -257,15 +257,15 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["y_label"] = None
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual("y-axis label not defined", ax2.get_ylabel())
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_None_x_axis_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_None_x_axis_label() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_data_series_1_label(self):
+    def test_Charts_plot_axis_with_data_series_1_label(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -273,16 +273,16 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["data_series_1_label"] = self.data_series_1_label
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual(my_dict["data_series_1_label"], ax2.get_lines()[0].get_label())
             # plt.legend()
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_data_series_1_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_data_series_1_label() failed: {e}")
         finally:
             plt.close(fig)
 
-    def test_Charts_plot_single_axis_with_None_data_series_1_label(self):
+    def test_Charts_plot_axis_with_None_data_series_1_label(self):
         try:
             fig = plt.figure(figsize=(10, 5))
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -290,12 +290,12 @@ class TestCharts(TestCase):
             my_dict["values"] = self.values_1
             my_dict["data_series_1_label"] = None
 
-            ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
+            ax2 = tools.Charts().plot_axis(ax1, my_dict)
             self.assertEqual("label not defined", ax2.get_lines()[0].get_label())
             # plt.legend()
             # plt.show()  # This will actually show the plot
         except Exception as e:
-            self.fail(f"test_Charts_plot_single_axis_with_None_data_series_1_label() failed: {e}")
+            self.fail(f"test_Charts_plot_axis_with_None_data_series_1_label() failed: {e}")
         finally:
             pass
             plt.close(fig)

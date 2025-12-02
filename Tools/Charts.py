@@ -12,7 +12,7 @@ class Charts:
     def __init__(self):
         pass
 
-    def plot_single_axis(self, ax, my_dict):
+    def plot_axis(self, ax, my_dict):
         """
         Plots a single axis of a figure using the values in the dictionary "dict".  There can be multiple plots
         on a single axis.
