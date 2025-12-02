@@ -98,7 +98,7 @@ class Test_hisReadMany_date(TestCase):
     def test_hisReadMany_Today(self):
         """
         This test checks that some trends are returned when looking for today's values.  This test depends on:
-        1) Privileges of username in Facilisite and the 75F API
+        1) Privileges of username in Facilisight and the 75F API
         2) The date chosen still has trends (may need to be updated if values for these historical value have been archived)
         3) The id being used (while change if the current profile is changed or deleted)
         4) The date cannot include the current date as there haven't been 588 trends recorded yet
@@ -120,7 +120,7 @@ class Test_hisReadMany_date(TestCase):
     def test_hisReadMany_Yesterday(self):
         """
         This test checks that there are 1,440 trends returned for yesterday.  This test depends on:
-        1) Privileges of username in Facilisite and the 75F API
+        1) Privileges of username in Facilisight and the 75F API
         2) The date chosen still has trends (may need to be updated if values for these historical value have been archived)
         3) The id being used (while change if the current profile is changed or deleted)
         """

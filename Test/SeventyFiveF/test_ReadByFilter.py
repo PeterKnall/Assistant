@@ -9,7 +9,7 @@ class TestReadByFilter(TestCase):
         """
         This test checks that there are a single row is returned when looking for building equipment at the test site.
         This test depends on:
-        1) Privileges of username in Facilisite and the 75F API
+        1) Privileges of username in Facilisight and the 75F API
         2) The id being used (while change if the current profile is changed or deleted)
         3) The site's structure has not changed (may need to verify if the test fails)
         """
