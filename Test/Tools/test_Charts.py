@@ -1,6 +1,4 @@
 from unittest import TestCase
-
-import Tools.Charts
 import Tools.Charts as tools
 
 
