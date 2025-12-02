@@ -33,15 +33,15 @@ class Charts:
             else:
                 ax.set_title("title not defined")
 
-        if "xlabel" in my_dict:
-            if my_dict["xlabel"]:
-                ax.set_xlabel(my_dict["xlabel"])
+        if "x_label" in my_dict:
+            if my_dict["x_label"]:
+                ax.set_xlabel(my_dict["x_label"])
             else:
                 ax.set_xlabel("x-axis label not defined")
 
-        if "ylabel" in my_dict:
-            if my_dict["ylabel"]:
-                ax.set_ylabel(my_dict["ylabel"])
+        if "y_label" in my_dict:
+            if my_dict["y_label"]:
+                ax.set_ylabel(my_dict["y_label"])
             else:
                 ax.set_ylabel("y-axis label not defined")
 

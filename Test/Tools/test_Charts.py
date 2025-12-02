@@ -144,7 +144,7 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values
-            my_dict["xlabel"] = self.x_label
+            my_dict["x_label"] = self.x_label
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual(self.x_label, ax2.get_xlabel())
@@ -160,7 +160,7 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values
-            my_dict["xlabel"] = None
+            my_dict["x_label"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual("x-axis label not defined", ax2.get_xlabel())
@@ -176,7 +176,7 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values
-            my_dict["ylabel"] = self.y_label
+            my_dict["y_label"] = self.y_label
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual(self.y_label, ax2.get_ylabel())
@@ -192,7 +192,7 @@ class TestCharts(TestCase):
             ax1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             my_dict = dict()
             my_dict["values"] = self.values
-            my_dict["ylabel"] = None
+            my_dict["y_label"] = None
 
             ax2 = tools.Charts().plot_single_axis(ax1, my_dict)
             self.assertEqual("y-axis label not defined", ax2.get_ylabel())
