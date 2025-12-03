@@ -12,6 +12,15 @@ class Charts:
     def __init__(self):
         pass
 
+    def build_axis(self, ax, axis_dict_list):
+        """
+        Plot one or more collections of data on a single axis.
+        :param ax: The axis to attach the data to
+        :param axis_dict_list: A list of dictionaries containing the data to apply to the axis
+        :return: axis with data plotted
+        """
+        pass
+
     def plot_axis(self, ax, my_dict):
         """
         Plots a single axis of a figure using the values in the dictionary "dict".  There can be multiple plots
