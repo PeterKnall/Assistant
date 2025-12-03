@@ -3,7 +3,13 @@ import Tools.Charts as tools
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+import logging
 
+logging.basicConfig(
+    filename="test_Charts.log",
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+)
 
 class TestCharts(TestCase):
 
