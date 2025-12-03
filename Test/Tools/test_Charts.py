@@ -5,11 +5,16 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import logging
 
+# Note: Many libraries have DEBUG comments set, use logging.INFO to disable
 logging.basicConfig(
-    filename="test_Charts.log",
-    level=logging.DEBUG,
+    filename="test.log",
+    level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
 )
+
+# Clear out previous test log
+with open("test.log", "w") as f:
+    f.write("*** test_Charts starting ***")
 
 class TestCharts(TestCase):
 
@@ -30,6 +35,7 @@ class TestCharts(TestCase):
                 {"x": datetime(2000, 1, 1, 3, 0, 0), "y": 1},
                 {"x": datetime(2000, 1, 1, 4, 0, 0), "y": 0}
                 ]
+
     def test_Charts_can_instantiate(self):
         try:
             obj = tools.Charts()
