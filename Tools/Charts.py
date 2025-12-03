@@ -21,13 +21,13 @@ class Charts:
         """
         pass
 
-    def plot_data(self, ax, my_dict):
+    def plot_data(self, ax, data_dict):
         """
-        Plots a single axis of a figure using the values in the dictionary "my_dict".  There can be multiple plots
+        Plots a single axis of a figure using the values in the dictionary "data_dict".  There can be multiple plots
         on a single axis.
 
         :param ax: Reference to axis to plot
-        :param my_dict: Dictionary containing information to plot.  Key:Value pairs are:
+        :param data_dict: Dictionary containing information to plot.  Key:Value pairs are:
             title:  string title for this set of data
             x_label: label for the x-axis
             y_label: label for the y-axis
@@ -40,49 +40,49 @@ class Charts:
                         name:value pairs "x" and "y".
         :return: updated axis
         """
-        df = pd.DataFrame(my_dict["values"])
+        df = pd.DataFrame(data_dict["values"])
         ax.plot(df["x"], df["y"])
 
-        if "title" in my_dict:
-            if my_dict["title"]:
-                ax.set_title(my_dict["title"])
+        if "title" in data_dict:
+            if data_dict["title"]:
+                ax.set_title(data_dict["title"])
             else:
                 ax.set_title("title not defined")
 
-        if "x_label" in my_dict:
-            if my_dict["x_label"]:
-                ax.set_xlabel(my_dict["x_label"])
+        if "x_label" in data_dict:
+            if data_dict["x_label"]:
+                ax.set_xlabel(data_dict["x_label"])
             else:
                 ax.set_xlabel("x-axis label not defined")
 
-        if "y_label" in my_dict:
-            if my_dict["y_label"]:
-                ax.set_ylabel(my_dict["y_label"])
+        if "y_label" in data_dict:
+            if data_dict["y_label"]:
+                ax.set_ylabel(data_dict["y_label"])
             else:
                 ax.set_ylabel("y-axis label not defined")
 
-        if "data_series_label" in my_dict:
+        if "data_series_label" in data_dict:
             index = len(ax.get_lines()) - 1
-            if my_dict["data_series_label"]:
-                ax.get_lines()[index].set_label(my_dict["data_series_label"])
+            if data_dict["data_series_label"]:
+                ax.get_lines()[index].set_label(data_dict["data_series_label"])
             else:
                 ax.get_lines()[index].set_label("label not defined")
 
-        if "color" in my_dict:
+        if "color" in data_dict:
             index = len(ax.get_lines()) - 1
-            if my_dict["color"]:
+            if data_dict["color"]:
                 try:
-                    ax.get_lines()[index].set_color(my_dict["color"])
+                    ax.get_lines()[index].set_color(data_dict["color"])
                 except Exception as e:
                     pass    # defer to Matplotlib pyplot's color cycle
             else:
                 pass   # if None is passed, do nothing
 
-        if "marker" in my_dict:
+        if "marker" in data_dict:
             index = len(ax.get_lines()) - 1
-            if my_dict["marker"]:
+            if data_dict["marker"]:
                 try:
-                    ax.get_lines()[index].set_marker(my_dict["marker"])
+                    ax.get_lines()[index].set_marker(data_dict["marker"])
                 except Exception as e:
                     pass    # do nothing
             else:

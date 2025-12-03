@@ -2,7 +2,7 @@ from unittest import TestCase
 import Tools.Charts as tools
 import numpy as np
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 class TestCharts(TestCase):
@@ -34,16 +34,16 @@ class TestCharts(TestCase):
 
     def test_Charts_call_plot_data_with_axis_as_None_returns_exception(self):
         try:
-            my_dict = dict()
-            my_dict["values"] = self.values_1
+            data_dict = dict()
+            data_dict["values"] = self.values_1
 
-            tools.Charts().plot_data(None, my_dict)
+            tools.Charts().plot_data(None, data_dict)
         except Exception as e:
             pass
         else:
             self.assertFalse(f"Expected exception when calling with axis set to None.")
 
-    def test_Charts_call_plot_data_with_my_dict_as_None_returns_exception(self):
+    def test_Charts_call_plot_data_with_data_dict_as_None_returns_exception(self):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
@@ -60,9 +60,9 @@ class TestCharts(TestCase):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
-            my_dict = dict()
+            data_dict = dict()
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
         except Exception as e:
             pass
         else:
@@ -75,10 +75,10 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_values_only")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
+            data_dict = dict()
+            data_dict["values"] = self.values_1
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
 
             self.assertIsInstance(ax, plt.Axes)
             self.assertEqual(1, len(ax.get_lines()), "There is not 1 line in the axis")
@@ -120,13 +120,13 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_two_axis_values")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertIsInstance(ax, plt.Axes)
             self.assertEqual(2, len(ax.get_lines()),
@@ -200,12 +200,12 @@ class TestCharts(TestCase):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["title"] = "test_Charts_plot_data_with_title"
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["title"] = "test_Charts_plot_data_with_title"
 
-            tools.Charts().plot_data(ax, my_dict)
-            self.assertEqual(my_dict["title"], ax.get_title(),
+            tools.Charts().plot_data(ax, data_dict)
+            self.assertEqual(data_dict["title"], ax.get_title(),
                              "test_Charts_plot_data_with_title: Title did not match")
             if self.show_plot:
                 plt.show()
@@ -218,11 +218,11 @@ class TestCharts(TestCase):
         try:
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["title"] = None
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["title"] = None
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual("title not defined", ax.get_title(),
                              "test_Charts_plot_data_with_None_title: None title assert failed")
             if self.show_plot:
@@ -237,11 +237,11 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_x_axis_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["x_label"] = self.x_label
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["x_label"] = self.x_label
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual(self.x_label, ax.get_xlabel(),
                              "test_Charts_plot_data_with_x_axis_label: x-axis labels did not match")
             if self.show_plot:
@@ -256,11 +256,11 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_None_x_axis_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["x_label"] = None
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["x_label"] = None
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual("x-axis label not defined", ax.get_xlabel(),
                              "test_Charts_plot_data_with_None_x_axis_label: None x-axis label assert failed")
             if self.show_plot:
@@ -275,11 +275,11 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_y_axis_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["y_label"] = self.y_label
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["y_label"] = self.y_label
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual(self.y_label, ax.get_ylabel(),
                              "test_Charts_plot_data_with_y_axis_label: y-axis labels did not match")
             if self.show_plot:
@@ -294,11 +294,11 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_None_y_axis_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["y_label"] = None
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["y_label"] = None
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual("y-axis label not defined", ax.get_ylabel(),
                              "test_Charts_plot_data_with_None_y_axis_label: y-axis label assert failed")
             if self.show_plot:
@@ -313,13 +313,13 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_data_series_1_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["data_series_label"] = self.data_series_1_label
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["data_series_label"] = self.data_series_1_label
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
 
-            self.assertEqual(my_dict["data_series_label"], ax.get_lines()[0].get_label(),
+            self.assertEqual(data_dict["data_series_label"], ax.get_lines()[0].get_label(),
                              "test_Charts_plot_data_with_data_series_1_label: series 1 labels did not match")
             if self.show_plot:
                 plt.legend()
@@ -334,19 +334,19 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_data_series_2_label")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["data_series_label"] = self.data_series_1_label
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["data_series_label"] = self.data_series_2_label
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["data_series_label"] = self.data_series_1_label
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["data_series_label"] = self.data_series_2_label
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
-            self.assertEqual(my_dict1["data_series_label"], ax.get_lines()[0].get_label(),
+            self.assertEqual(data_dict_1["data_series_label"], ax.get_lines()[0].get_label(),
                              "test_Charts_plot_data_with_data_series_2_label: series 1 labels did not match")
-            self.assertEqual(my_dict2["data_series_label"], ax.get_lines()[1].get_label(),
+            self.assertEqual(data_dict_2["data_series_label"], ax.get_lines()[1].get_label(),
                              "test_Charts_plot_data_with_data_series_2_label: series 2 labels did not match")
 
             if self.show_plot:
@@ -362,11 +362,11 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(10, 5))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_None_data_series_1_label")
-            my_dict = dict()
-            my_dict["values"] = self.values_1
-            my_dict["data_series_label"] = None
+            data_dict = dict()
+            data_dict["values"] = self.values_1
+            data_dict["data_series_label"] = None
 
-            tools.Charts().plot_data(ax, my_dict)
+            tools.Charts().plot_data(ax, data_dict)
             self.assertEqual("label not defined", ax.get_lines()[0].get_label(),
                              "test_Charts_plot_data_with_None_data_series_1_label: series 1 label assert fail")
             if self.show_plot:
@@ -382,15 +382,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_text_color")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["color"] = "red"
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["color"] = "green"
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["color"] = "red"
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["color"] = "green"
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual("red", ax.get_lines()[0].get_color(),
                              "test_Charts_plot_data_with_text_color: line 1 color did not match")
@@ -408,15 +408,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_hex_color")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["color"] = "#FF0000"
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["color"] = "#00FF00"
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["color"] = "#FF0000"
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["color"] = "#00FF00"
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual("#FF0000", ax.get_lines()[0].get_color(),
                              "test_Charts_plot_data_with_hex_color: line 1 color did not match")
@@ -434,15 +434,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_rgb_color")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["color"] = (1, 0, 0)
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["color"] = (0, 1, 0)
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["color"] = (1, 0, 0)
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["color"] = (0, 1, 0)
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual((1, 0, 0), ax.get_lines()[0].get_color(),
                              "test_Charts_plot_data_with_rgb_color: line 1 color did not match")
@@ -462,15 +462,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_None_color")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["color"] = None
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["color"] = None
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["color"] = None
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["color"] = None
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual(colors[0], ax.get_lines()[0].get_color(),
                              "test_Charts_plot_data_with_None_color: line 1 color did not match color cycle")
@@ -490,15 +490,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_invalid_color")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["color"] = "Not a valid color"
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["color"] = "Also not a valid color"
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["color"] = "Not a valid color"
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["color"] = "Also not a valid color"
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual(colors[0], ax.get_lines()[0].get_color(),
                              "test_Charts_plot_data_with_invalid_color: line 1 color did not match color cycle")
@@ -516,15 +516,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_marker")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["marker"] = "o"
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["marker"] = "x"
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["marker"] = "o"
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["marker"] = "x"
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual("o", ax.get_lines()[0].get_marker(),
                              "test_Charts_plot_data_with_marker: marker 1 did not match")
@@ -542,15 +542,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_None_marker")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["marker"] = None
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["marker"] = None
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["marker"] = None
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["marker"] = None
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual("None", ax.get_lines()[0].get_marker(),
                              "test_Charts_plot_data_with_marker: marker 1 is not None")
@@ -568,15 +568,15 @@ class TestCharts(TestCase):
             fig = plt.figure(figsize=(15, 9))
             ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
             ax.set_title("test_Charts_plot_data_with_invalid_marker")
-            my_dict1 = dict()
-            my_dict1["values"] = self.values_1
-            my_dict1["marker"] = "/"
-            my_dict2 = dict()
-            my_dict2["values"] = self.values_2
-            my_dict2["marker"] = "M"
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["marker"] = "/"
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["marker"] = "M"
 
-            tools.Charts().plot_data(ax, my_dict1)
-            tools.Charts().plot_data(ax, my_dict2)
+            tools.Charts().plot_data(ax, data_dict_1)
+            tools.Charts().plot_data(ax, data_dict_2)
 
             self.assertEqual("None", ax.get_lines()[0].get_marker(),
                              "test_Charts_plot_data_with_marker: marker 1 is not None")
