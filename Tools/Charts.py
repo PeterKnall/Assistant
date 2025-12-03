@@ -21,13 +21,13 @@ class Charts:
         """
         pass
 
-    def plot_axis(self, ax, my_dict):
+    def plot_data(self, ax, my_dict):
         """
-        Plots a single axis of a figure using the values in the dictionary "dict".  There can be multiple plots
+        Plots a single axis of a figure using the values in the dictionary "my_dict".  There can be multiple plots
         on a single axis.
 
         :param ax: Reference to axis to plot
-        :param dict: Dictionary containing information to plot.  Key:Value pairs are:
+        :param my_dict: Dictionary containing information to plot.  Key:Value pairs are:
             title:  string title for this set of data
             x_label: label for the x-axis
             y_label: label for the y-axis
