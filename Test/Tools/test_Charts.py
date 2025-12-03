@@ -6,6 +6,8 @@ from datetime import datetime
 import logging
 
 # Note: Many libraries have DEBUG comments set, use logging.INFO to disable
+# Note: This was added to support logging in the methods bering tested, not logging in the test class (which should
+#       be in the Test Report)
 logging.basicConfig(
     filename="test.log",
     level=logging.INFO,
