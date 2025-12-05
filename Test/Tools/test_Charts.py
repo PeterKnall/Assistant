@@ -20,7 +20,7 @@ with open("test.log", "w") as f:
 
 class TestCharts(TestCase):
 
-    show_plot = False       # Set to "True" to view the charts
+    show_plot = True       # Set to "True" to view the charts
     x_label = "X-axis"
     y_label = "Y-axis"
     data_series_1_label = "Data Series 1"
@@ -642,5 +642,57 @@ class TestCharts(TestCase):
             tools.Charts().build_axis(ax, data_dict_list)
         except Exception as e:
             self.assertFalse(f"FAULT: test_Charts_call_build_axis_with_data_dict_list_empty_returns_exception.")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_build_axis_with_data_series_1_label(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            ax.set_title("test_Charts_build_axis_with_data_series_1_label")
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["data_series_label"] = self.data_series_1_label
+            data_dict_list = []
+            data_dict_list.append(data_dict_1)
+
+            tools.Charts().build_axis(ax, data_dict_list)
+
+            self.assertEqual(data_dict_1["data_series_label"], ax.get_lines()[0].get_label(),
+                             "test_Charts_plot_data_with_data_series_1_label: series 1 labels did not match")
+            if self.show_plot:
+                plt.legend()
+                plt.show()
+        except Exception as e:
+            self.fail(f"FAULT: test_Charts_plot_data_with_data_series_1_label(): {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_build_axis_with_data_series_1_and_series_2_label(self):
+        try:
+            fig = plt.figure(figsize=(15, 9))
+            ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+            ax.set_title("test_Charts_build_axis_with_data_series_1_and_series_2_label")
+            data_dict_1 = dict()
+            data_dict_1["values"] = self.values_1
+            data_dict_1["data_series_label"] = self.data_series_1_label
+            data_dict_2 = dict()
+            data_dict_2["values"] = self.values_2
+            data_dict_2["data_series_label"] = self.data_series_2_label
+            data_dict_list = []
+            data_dict_list.append(data_dict_1)
+            data_dict_list.append(data_dict_2)
+
+            tools.Charts().build_axis(ax, data_dict_list)
+
+            self.assertEqual(data_dict_1["data_series_label"], ax.get_lines()[0].get_label(),
+                             "test_Charts_plot_data_with_data_series_1_label: series 1 labels did not match")
+            self.assertEqual(data_dict_2["data_series_label"], ax.get_lines()[1].get_label(),
+                             "test_Charts_plot_data_with_data_series_1_label: series 1 labels did not match")
+            if self.show_plot:
+                plt.legend()
+                plt.show()
+        except Exception as e:
+            self.fail(f"FAULT: test_Charts_plot_data_with_data_series_1_label(): {e}")
         finally:
             plt.close(fig)
