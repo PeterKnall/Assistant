@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Charts:
     """
@@ -19,9 +22,12 @@ class Charts:
         :param data_dict_list: A list of dictionaries containing the data to apply to the axis
         :return: axis with data plotted
         """
+        logger.info("Entering Charts.bulid_axis()")
         for data_dict in data_dict_list:
+            logging.INFO(f"Processing {data_dict}")
             self.plot_data(ax, data_dict)
 
+        logger.info("Leaving Charts.bulid_axis()")
         return ax
 
     def plot_data(self, ax, data_dict):
@@ -43,6 +49,7 @@ class Charts:
                         name:value pairs "x" and "y".
         :return: updated axis
         """
+        logger.info("Entering Charts.plot_data()")
         df = pd.DataFrame(data_dict["values"])
         ax.plot(df["x"], df["y"])
 
@@ -69,6 +76,7 @@ class Charts:
             if data_dict["data_series_label"]:
                 ax.get_lines()[index].set_label(data_dict["data_series_label"])
             else:
+                logger.error(f"Label assigned but not defined in: {data_dict}")
                 ax.get_lines()[index].set_label("label not defined")
 
         if "color" in data_dict:
@@ -77,7 +85,7 @@ class Charts:
                 try:
                     ax.get_lines()[index].set_color(data_dict["color"])
                 except Exception as e:
-                    pass    # defer to Matplotlib pyplot's color cycle
+                    logger.error(f"Color assigned but not defined in: {data_dict}")
             else:
                 pass   # if None is passed, do nothing
 
@@ -87,8 +95,9 @@ class Charts:
                 try:
                     ax.get_lines()[index].set_marker(data_dict["marker"])
                 except Exception as e:
-                    pass    # do nothing
+                    logger.error(f"Marker assigned but not defined in: {data_dict}")
             else:
                 pass        # do nothing
 
+        logger.info("Leaving Charts.plot_data()")
         return ax
