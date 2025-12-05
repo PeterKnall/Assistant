@@ -1,6 +1,4 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import logging
 
 logger = logging.getLogger(__name__)
@@ -24,7 +22,7 @@ class Charts:
         """
         logger.info("Entering Charts.bulid_axis()")
         for data_dict in data_dict_list:
-            logging.INFO(f"Processing {data_dict}")
+            logger.info(f"Processing {data_dict}")
             self.plot_data(ax, data_dict)
 
         logger.info("Leaving Charts.bulid_axis()")
