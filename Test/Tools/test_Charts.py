@@ -719,16 +719,11 @@ class TestCharts(TestCase):
         data_dict_1 = dict()
         data_dict_1["values"] = self.values_1
         data_dict_1["data_series_label"] = self.data_series_1_label
-        # data_dict_2 = dict()
-        # data_dict_2["values"] = self.values_2
-        # data_dict_2["data_series_label"] = self.data_series_2_label
         data_dict_list = []
         data_dict_list.append(data_dict_1)
-        # data_dict_list.append(data_dict_2)
 
         axis_list = []
         axis_dictionary = {}
-        axis_dictionary["title"] = "test_charts_build_figure_with_single_axis_list"
         axis_dictionary["data_dict_list"] = data_dict_list
         axis_list.append(axis_dictionary)
 
@@ -739,4 +734,5 @@ class TestCharts(TestCase):
             self.assertFalse(f"FAULT: test_charts_build_figure_with_single_axis_list: {e}")
 
         self.assertEqual(1, len(figure.axes))
-        plt.show()
+        if self.show_plot:
+            plt.show()
