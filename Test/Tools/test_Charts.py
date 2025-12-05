@@ -715,7 +715,7 @@ class TestCharts(TestCase):
         except Exception as e:
             self.assertFalse(f"FAULT: test_Charts_call_build_figure_with_empty_list_returns_empty_figure: {e}")
 
-    def test_charts_build_figure_with_single_axis_list(self):
+    def test_Charts_build_figure_with_single_axis_list(self):
         data_dict_1 = dict()
         data_dict_1["values"] = self.values_1
         data_dict_1["data_series_label"] = self.data_series_1_label
@@ -736,3 +736,36 @@ class TestCharts(TestCase):
         self.assertEqual(1, len(figure.axes))
         if self.show_plot:
             plt.show()
+
+    def test_Charts_build_figure_with_two_axis_lists(self):
+        data_dict_1 = dict()
+        data_dict_1["values"] = self.values_1
+        data_dict_1["data_series_label"] = self.data_series_1_label
+        data_dict_2 = dict()
+        data_dict_2["values"] = self.values_2
+        data_dict_2["data_series_label"] = self.data_series_2_label
+        data_dict_list_1 = []
+        data_dict_list_2 = []
+        data_dict_list_1.append(data_dict_1)
+        data_dict_list_2.append(data_dict_2)
+
+        axis_list = []
+        axis_dictionary_1 = {}
+        axis_dictionary_2 = {}
+
+        axis_dictionary_1["title"] = "Series 1"
+        axis_dictionary_1["data_dict_list"] = data_dict_list_1
+        axis_list.append(axis_dictionary_1)
+
+        axis_dictionary_2["title"] = "Series 2"
+        axis_dictionary_2["data_dict_list"] = data_dict_list_2
+        axis_list.append(axis_dictionary_2)
+
+        figure = plt.figure()
+        try:
+            figure = tools.Charts().build_figure(figure, axis_list)
+        except Exception as e:
+            self.assertFalse(f"FAULT: test_charts_build_figure_with_single_axis_list: {e}")
+
+        self.assertEqual(2, len(figure.axes))
+        plt.show()
