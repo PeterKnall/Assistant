@@ -13,14 +13,23 @@ class Charts:
     def __init__(self):
         pass
 
-    def build_figure(self, figure, axes_list):
+    def build_figure(self, axes_list):
         """
+        Build a figure from design list (DL) of data_dict_lists.  DLs are templates for the data an axis should contain
+        based on the information it intends to convey.
 
-        :param figure:
+        For example, if the DL is for the performance of Room Temperature versus Setpoint, then processing the DL
+        using the Building Automation System's (BAS) API will return data_dict_lists containing the Room Temperature,
+        Current Heating Setpoint, and Current Cooling Setpoint
+
         :param axes_list:
-        :return:
+        :return: figure: Matplotlib pyplot figure containing all the axes
         """
-        pass
+        if not axes_list:
+            message = "Axis List is None in Charts.build_figure()"
+            logger.error(f"Exception:  {message}")
+            raise Exception(message)
+        figure = plt.figure()
 
     def build_axis(self, ax, data_dict_list):
         """
@@ -29,12 +38,12 @@ class Charts:
         :param data_dict_list: A list of dictionaries containing the data to apply to the axis
         :return: axis with data plotted
         """
-        logger.info("Entering Charts.bulid_axis()")
+        logger.info("Entering Charts.build_axis()")
         for data_dict in data_dict_list:
             logger.info(f"Processing {data_dict}")
             self.plot_data(ax, data_dict)
 
-        logger.info("Leaving Charts.bulid_axis()")
+        logger.info("Leaving Charts.build_axis()")
         return ax
 
     def plot_data(self, ax, data_dict):
