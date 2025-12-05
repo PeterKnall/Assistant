@@ -20,7 +20,7 @@ with open("test.log", "w") as f:
 
 class TestCharts(TestCase):
 
-    show_plot = True       # Set to "True" to view the charts
+    show_plot = False       # Set to "True" to view the charts
     x_label = "X-axis"
     y_label = "Y-axis"
     data_series_1_label = "Data Series 1"
