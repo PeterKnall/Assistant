@@ -1,5 +1,6 @@
 import pandas as pd
 import logging
+import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
@@ -25,11 +26,13 @@ class Charts:
         :param axes_list:
         :return: figure: Matplotlib pyplot figure containing all the axes
         """
-        if not axes_list:
+        if axes_list is None:
             message = "Axis List is None in Charts.build_figure()"
             logger.error(f"Exception:  {message}")
             raise Exception(message)
+
         figure = plt.figure()
+        return figure
 
     def build_axis(self, ax, data_dict_list):
         """
