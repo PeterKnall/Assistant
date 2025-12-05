@@ -714,3 +714,25 @@ class TestCharts(TestCase):
             self.assertEqual(0, len(figure.axes))
         except Exception as e:
             self.assertFalse(f"FAULT: test_Charts_call_build_figure_with_empty_list_returns_empty_figure: {e}")
+
+    def test_charts_build_figure_with_single_axis_list(self):
+        data_dict_1 = dict()
+        data_dict_1["values"] = self.values_1
+        data_dict_1["data_series_label"] = self.data_series_1_label
+        # data_dict_2 = dict()
+        # data_dict_2["values"] = self.values_2
+        # data_dict_2["data_series_label"] = self.data_series_2_label
+        data_dict_list = []
+        data_dict_list.append(data_dict_1)
+        # data_dict_list.append(data_dict_2)
+
+        axis_list = {}
+        axis_list["title"] = "test_charts_build_figure_with_single_axis_list"
+        axis_list["data_dict_list"] = data_dict_list
+
+        try:
+            figure = tools.Charts().build_figure(axis_list)
+            self.assertEqual(1, len(figure.axes))
+            plt.plot()
+        except Exception as e:
+            self.assertFalse(f"FAULT: test_charts_build_figure_with_single_axis_list: {e}")
