@@ -34,14 +34,17 @@ class Charts:
             logger.error(f"Exception:  {message}")
             raise Exception(message)
 
-        ax = figure.add_subplot(1, 1, 1)
         logger.info(f"Number of Axes to generate in this figure: {len(axes_list)}")
 
-        axis_item = axes_list[0]
-        axis_dictionary_list = axis_item["data_dict_list"]
-        logger.info(f"Number of Dictionaries to generate in this axis: {len(axis_dictionary_list)}")
+        number_of_axes = len(axes_list)
+        count = 0
+        for axis_item in axes_list:
+            count = count + 1
+            axis_dictionary_list = axis_item["data_dict_list"]
+            ax = figure.add_subplot(number_of_axes, 1, count)
+            logger.info(f"Processing {len(axis_dictionary_list)} sets of data in axis: {axis_item}")
 
-        ax = self.build_axis(ax, axis_dictionary_list)
+            ax = self.build_axis(ax, axis_dictionary_list)
 
         logger.info("Leaving Charts.build_figure()")
         return figure
