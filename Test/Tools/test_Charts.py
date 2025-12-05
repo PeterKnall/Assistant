@@ -696,3 +696,12 @@ class TestCharts(TestCase):
             self.fail(f"FAULT: test_Charts_plot_data_with_data_series_1_label(): {e}")
         finally:
             plt.close(fig)
+
+    def test_Charts_call_build_figure_with_None_axis_list_returns_exception(self):
+        try:
+            tools.Charts().build_figure(None)
+        except Exception as e:
+            pass
+        else:
+            self.assertFalse(f"test_Charts_call_build_figure_with_None_axis_list_returns_exception: "
+                             f"Expected exception when calling with axis list set to None.")
