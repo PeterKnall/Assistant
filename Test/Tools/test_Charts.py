@@ -44,7 +44,8 @@ class TestCharts(TestCase):
         except Exception as e:
             self.fail(f"Instantiation failed: {e}")
 
-        self.assertIsInstance(obj, tools.Charts, "Object is not an instance of Tools.Charts.Charts()")
+        self.assertIsInstance(obj, tools.Charts, "test_Charts_can_instantiate: "
+                                                 "Object is not an instance of Tools.Charts.Charts()")
 
     def test_Charts_call_plot_data_with_axis_as_None_returns_exception(self):
         try:
@@ -55,7 +56,8 @@ class TestCharts(TestCase):
         except Exception as e:
             pass
         else:
-            self.assertFalse(f"Expected exception when calling with axis set to None.")
+            self.assertFalse(f"test_Charts_call_plot_data_with_axis_as_None_returns_exception: "
+                             f"Expected exception when calling with axis set to None.")
 
     def test_Charts_call_plot_data_with_data_dict_as_None_returns_exception(self):
         try:
@@ -66,7 +68,8 @@ class TestCharts(TestCase):
         except Exception as e:
             pass
         else:
-            self.assertFalse(f"Expected exception when calling with dictionary values set to None.")
+            self.assertFalse(f"test_Charts_call_plot_data_with_data_dict_as_None_returns_exception: "
+                             f"Expected exception when calling with dictionary values set to None.")
         finally:
             plt.close(fig)
 
@@ -80,7 +83,7 @@ class TestCharts(TestCase):
         except Exception as e:
             pass
         else:
-            self.fail(f"test_Charts_plot_data_with_empty_dataframe() failed")
+            self.fail(f"FAULT: test_Charts_plot_data_with_empty_dataframe()")
         finally:
             plt.close(fig)
 
@@ -125,7 +128,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_values_only() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_values_only(): {e}")
         finally:
             plt.close(fig)
 
@@ -206,7 +209,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_two_axis_values() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_two_axis_values(): {e}")
         finally:
             plt.close(fig)
 
@@ -224,7 +227,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_title() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_title(): {e}")
         finally:
             plt.close(fig)
 
@@ -242,7 +245,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_None_title() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_None_title(): {e}")
         finally:
             plt.close(fig)
 
@@ -261,7 +264,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_x_axis_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_x_axis_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -280,7 +283,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_None_x_axis_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_None_x_axis_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -299,7 +302,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_y_axis_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_y_axis_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -318,7 +321,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_None_x_axis_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_None_x_axis_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -339,7 +342,7 @@ class TestCharts(TestCase):
                 plt.legend()
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_data_series_1_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_data_series_1_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -367,7 +370,7 @@ class TestCharts(TestCase):
                 plt.legend()
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_data_series_1_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_data_series_1_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -387,7 +390,7 @@ class TestCharts(TestCase):
                 plt.legend()
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_None_data_series_1_label() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_None_data_series_1_label(): {e}")
         finally:
             plt.close(fig)
 
@@ -413,7 +416,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_text_color() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_text_color(): {e}")
         finally:
             plt.close(fig)
 
@@ -439,7 +442,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_hex_color() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_hex_color(): {e}")
         finally:
             plt.close(fig)
 
@@ -465,7 +468,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_rgb_color() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_rgb_color(): {e}")
         finally:
             plt.close(fig)
 
@@ -493,7 +496,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_None_color() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_None_color(): {e}")
         finally:
             plt.close(fig)
 
@@ -521,7 +524,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_invalid_color() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_invalid_color(): {e}")
         finally:
             plt.close(fig)
 
@@ -547,7 +550,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_marker() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_marker(): {e}")
         finally:
             plt.close(fig)
 
@@ -573,7 +576,7 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_marker() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_marker(): {e}")
         finally:
             plt.close(fig)
 
@@ -599,6 +602,45 @@ class TestCharts(TestCase):
             if self.show_plot:
                 plt.show()
         except Exception as e:
-            self.fail(f"test_Charts_plot_data_with_marker() failed: {e}")
+            self.fail(f"FAULT: test_Charts_plot_data_with_marker(): {e}")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_call_build_axis_with_None_axis_returns_exception(self):
+        data_dict_list = []
+        data_dict_1 = dict()
+        data_dict_1["values"] = self.values_1
+        data_dict_list.append(data_dict_1)
+
+        try:
+            tools.Charts().build_axis(None, data_dict_1)
+        except Exception as e:
+            pass
+        else:
+            self.assertFalse(f"test_Charts_call_build_axis_with_None_axis_returns_exception: "
+                             f"Expected exception when calling with axis set to None.")
+
+    def test_Charts_call_build_axis_with_data_dict_list_as_None_returns_exception(self):
+        fig = plt.figure(figsize=(15, 9))
+        ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+
+        try:
+            tools.Charts().build_axis(ax, None)
+        except Exception as e:
+            pass
+        else:
+            self.assertFalse(f"test_Charts_call_build_axis_with_data_dict_list_as_None_returns_exception: "
+                             f"Expected exception when calling with dictionary values set to None.")
+        finally:
+            plt.close(fig)
+
+    def test_Charts_call_build_axis_with_data_dict_list_empty_returns_exception(self):
+        data_dict_list = []
+        fig = plt.figure(figsize=(15, 9))
+        ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+        try:
+            tools.Charts().build_axis(ax, data_dict_list)
+        except Exception as e:
+            self.assertFalse(f"FAULT: test_Charts_call_build_axis_with_data_dict_list_empty_returns_exception.")
         finally:
             plt.close(fig)
