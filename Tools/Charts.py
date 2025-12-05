@@ -1,3 +1,5 @@
+from zipfile import MAX_EXTRACT_VERSION
+
 import pandas as pd
 import logging
 import matplotlib.pyplot as plt
@@ -14,7 +16,7 @@ class Charts:
     def __init__(self):
         pass
 
-    def build_figure(self, axes_list):
+    def build_figure(self, figure, axes_list):
         """
         Build a figure from design list (DL) of data_dict_lists.  DLs are templates for the data an axis should contain
         based on the information it intends to convey.
@@ -26,12 +28,22 @@ class Charts:
         :param axes_list:
         :return: figure: Matplotlib pyplot figure containing all the axes
         """
+        logger.info("Entering Charts.build_figure()")
         if axes_list is None:
             message = "Axis List is None in Charts.build_figure()"
             logger.error(f"Exception:  {message}")
             raise Exception(message)
 
-        figure = plt.figure()
+        ax = figure.add_subplot(1, 1, 1)
+        logger.info(f"Number of Axes to generate in this figure: {len(axes_list)}")
+
+        axis_item = axes_list[0]
+        axis_dictionary_list = axis_item["data_dict_list"]
+        logger.info(f"Number of Dictionaries to generate in this axis: {len(axis_dictionary_list)}")
+
+        ax = self.build_axis(ax, axis_dictionary_list)
+
+        logger.info("Leaving Charts.build_figure()")
         return figure
 
     def build_axis(self, ax, data_dict_list):
