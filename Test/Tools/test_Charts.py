@@ -726,13 +726,17 @@ class TestCharts(TestCase):
         data_dict_list.append(data_dict_1)
         # data_dict_list.append(data_dict_2)
 
-        axis_list = {}
-        axis_list["title"] = "test_charts_build_figure_with_single_axis_list"
-        axis_list["data_dict_list"] = data_dict_list
+        axis_list = []
+        axis_dictionary = {}
+        axis_dictionary["title"] = "test_charts_build_figure_with_single_axis_list"
+        axis_dictionary["data_dict_list"] = data_dict_list
+        axis_list.append(axis_dictionary)
 
+        figure = plt.figure()
         try:
-            figure = tools.Charts().build_figure(axis_list)
-            self.assertEqual(1, len(figure.axes))
-            plt.plot()
+            figure = tools.Charts().build_figure(figure, axis_list)
         except Exception as e:
             self.assertFalse(f"FAULT: test_charts_build_figure_with_single_axis_list: {e}")
+
+        self.assertEqual(1, len(figure.axes))
+        plt.show()
