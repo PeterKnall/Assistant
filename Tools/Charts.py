@@ -13,6 +13,15 @@ class Charts:
     def __init__(self):
         pass
 
+    def build_figure(self, figure, axes_list):
+        """
+
+        :param figure:
+        :param axes_list:
+        :return:
+        """
+        pass
+
     def build_axis(self, ax, data_dict_list):
         """
         Plot one or more collections of data on a single axis.
