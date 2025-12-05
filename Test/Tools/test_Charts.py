@@ -707,10 +707,10 @@ class TestCharts(TestCase):
                              f"Expected exception when calling with axis list set to None.")
 
     def test_Charts_call_build_figure_with_empty_list_returns_empty_figure(self):
-        print([] is None)
         axis_list = []
+        figure = plt.figure()
         try:
-            figure = tools.Charts().build_figure(axis_list)
+            figure = tools.Charts().build_figure(figure, axis_list)
             self.assertEqual(0, len(figure.axes))
         except Exception as e:
             self.assertFalse(f"FAULT: test_Charts_call_build_figure_with_empty_list_returns_empty_figure: {e}")
@@ -768,4 +768,5 @@ class TestCharts(TestCase):
             self.assertFalse(f"FAULT: test_charts_build_figure_with_single_axis_list: {e}")
 
         self.assertEqual(2, len(figure.axes))
-        plt.show()
+        if self.show_plot or False:
+            plt.show()
